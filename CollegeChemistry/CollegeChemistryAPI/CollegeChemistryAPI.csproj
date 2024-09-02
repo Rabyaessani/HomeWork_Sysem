@@ -14,10 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Repositories\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\CollegeChemistryLibrary\CollegeChemistryLibrary.csproj" />
   </ItemGroup>
 

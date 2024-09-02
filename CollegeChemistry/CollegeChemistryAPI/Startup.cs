@@ -1,7 +1,10 @@
+using CollegeChemistryAPI.Repositories;
+using CollegeChemistryLibrary.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,6 +29,9 @@ namespace CollegeChemistryAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddDbContextPool<CollegeChemistryDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CollegeChemistryDbConn")));
+            services.AddHttpContextAccessor();
+            services.AddScoped<Interface_Blogs, BlogsRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
