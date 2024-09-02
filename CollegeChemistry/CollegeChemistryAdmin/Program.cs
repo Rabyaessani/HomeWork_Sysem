@@ -1,7 +1,11 @@
+using CollegeChemistryAdmin.Repositories;
+using CollegeChemistryLibrary.Interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<Interface_Blogs, BlogsRepository>();
 
 var app = builder.Build();
 
