@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CollegeChemistryAPI", "Coll
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{2620CDD9-BE3C-4565-8A43-55D136B1981B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CollegeChemistryAdmin", "CollegeChemistryAdmin\CollegeChemistryAdmin.csproj", "{6A09F7E9-269D-47F2-9D33-BC1D6A7CF779}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CollegeChemistryAdmin", "CollegeChemistryAdmin\CollegeChemistryAdmin.csproj", "{9322AADC-A239-46EC-9B66-67EAB89C101E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{2620CDD9-BE3C-4565-8A43-55D136B1981B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2620CDD9-BE3C-4565-8A43-55D136B1981B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2620CDD9-BE3C-4565-8A43-55D136B1981B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6A09F7E9-269D-47F2-9D33-BC1D6A7CF779}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6A09F7E9-269D-47F2-9D33-BC1D6A7CF779}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6A09F7E9-269D-47F2-9D33-BC1D6A7CF779}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6A09F7E9-269D-47F2-9D33-BC1D6A7CF779}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9322AADC-A239-46EC-9B66-67EAB89C101E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9322AADC-A239-46EC-9B66-67EAB89C101E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9322AADC-A239-46EC-9B66-67EAB89C101E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9322AADC-A239-46EC-9B66-67EAB89C101E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
