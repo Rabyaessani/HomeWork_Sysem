@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.34301.259
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "College-Chemistry-project", "College-Chemistry-project\College-Chemistry-project.csproj", "{CB7948FD-C6D5-4841-A2D6-880D22D0CB27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CollegeChemistryAdmin", "College-Chemistry-project\CollegeChemistryAdmin.csproj", "{CB7948FD-C6D5-4841-A2D6-880D22D0CB27}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CollegeChemistryAPI", "CollegeChemistryAPI\CollegeChemistryAPI.csproj", "{44E09F47-0CC6-42B9-ACD9-0BFA80AE5EF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CollegeChemistryAPI", "CollegeChemistryAPI\CollegeChemistryAPI.csproj", "{44E09F47-0CC6-42B9-ACD9-0BFA80AE5EF6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{2620CDD9-BE3C-4565-8A43-55D136B1981B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{2620CDD9-BE3C-4565-8A43-55D136B1981B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
