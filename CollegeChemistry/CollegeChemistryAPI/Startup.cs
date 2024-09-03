@@ -32,6 +32,7 @@ namespace CollegeChemistryAPI
             services.AddDbContextPool<CollegeChemistryDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CollegeChemistryDbConn")));
             services.AddHttpContextAccessor();
             services.AddScoped<Interface_Blogs, BlogsRepository>();
+            services.AddScoped<Interface_Lessons,LessonsRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
