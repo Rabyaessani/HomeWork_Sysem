@@ -75,7 +75,6 @@ namespace CollegeChemistryAPI.Repositories
                 _logger.LogError($"BlogsRepository > GetBlogById() {exc.ToString()}");
                 return null;
             }
-            throw new System.NotImplementedException();
         }
 
         public bool UpdateBlog(Blogs blog)

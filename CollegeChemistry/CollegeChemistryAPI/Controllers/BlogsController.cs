@@ -38,7 +38,7 @@ namespace CollegeChemistryAPI.Controllers
             }
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("getblogbyid")]
         public ActionResult GetBlogsById(int id)
         {
             try
@@ -53,8 +53,8 @@ namespace CollegeChemistryAPI.Controllers
             }
         }
 
-        [HttpPost]
-        public ActionResult PostBlogs([FromBody] Blogs blog)
+        [HttpPost("addblog")]
+        public ActionResult AddBlogs([FromBody] Blogs blog)
         {
             try
             {
@@ -72,7 +72,7 @@ namespace CollegeChemistryAPI.Controllers
             }
         }
 
-        [HttpDelete]
+        [HttpPost("deleteblog")]
         public ActionResult DeleteBlog([FromBody] Blogs blog)
         {
             try
@@ -93,7 +93,7 @@ namespace CollegeChemistryAPI.Controllers
             }
         }
 
-        [HttpPatch]
+        [HttpPost("updateblog")]
         public ActionResult UpdateBlog([FromBody] Blogs blog)
         {
             try
