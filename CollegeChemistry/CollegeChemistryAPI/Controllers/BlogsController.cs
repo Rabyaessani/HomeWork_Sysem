@@ -59,10 +59,6 @@ namespace CollegeChemistryAPI.Controllers
             try
             {
                 var result = _college_blogs.AddBlog(blog);
-                if (result == 0)
-                {
-                    return StatusCode(500, "An error occurred while adding the blog.");
-                }
                 return Ok(result);
 
             }
@@ -78,14 +74,7 @@ namespace CollegeChemistryAPI.Controllers
             try
             {
                 var result = _college_blogs.DeleteBlog(blog);
-                if (result)
-                {
-                    return Ok(new { message = "Blog deleted successfully." });
-                }
-                else
-                {
-                    return NotFound(new { message = "Blog not found or could not be deleted." });
-                }
+                return Ok(result);
             }
             catch (Exception xc)
             {
@@ -99,15 +88,7 @@ namespace CollegeChemistryAPI.Controllers
             try
             {
                 bool result = _college_blogs.UpdateBlog(blog);
-                if (result)
-                {
-                    
-                    return Ok(new { message = "Blog updated successfully." });
-                }
-                else
-                {
-                    return NotFound(new { message = "Blog not found or could not be updated." });
-                }
+                return Ok(result);
             }
             catch (Exception xc)
             {

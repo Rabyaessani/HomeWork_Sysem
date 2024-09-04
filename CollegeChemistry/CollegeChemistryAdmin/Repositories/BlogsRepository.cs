@@ -27,17 +27,14 @@ namespace CollegeChemistryAdmin.Repositories
         }
         public int AddBlog(Blogs blog)
         {
-            
-            var responseJson = _hllWebApi.AddBlog(blog, _webApibaseUrl, _hlabApiKey, _ApiHeader);
-            var addedBlogId = JsonConvert.DeserializeObject<int>(responseJson);
-            return addedBlogId;
-            
+            var jsonList = _hllWebApi.AddBlog(blog, _webApibaseUrl, _hlabApiKey, _ApiHeader);
+            var response = JsonConvert.DeserializeObject<int>(jsonList);
+            return response;
         }
 
         public bool DeleteBlog(Blogs blog)
         {
             var responseJson = _hllWebApi.DeleteBlog(blog, _webApibaseUrl, _hlabApiKey, _ApiHeader);
-
             var response = JsonConvert.DeserializeObject<bool>(responseJson);
             return response;
         }
@@ -45,31 +42,21 @@ namespace CollegeChemistryAdmin.Repositories
         public IEnumerable<Blogs> GetAllBlogs()
         {
             var jsonList = _hllWebApi.GetAllBlogs( _webApibaseUrl, _hlabApiKey, _ApiHeader);
-            var customerTicketsList = JsonConvert.DeserializeObject<List<Blogs>>(jsonList);
-            return customerTicketsList;
+            var response = JsonConvert.DeserializeObject<List<Blogs>>(jsonList);
+            return response;
         }
 
         public Blogs GetBlogById(int blogid)
         {
-            
-
-            var responseJson = _hllWebApi.GetBlogById(_webApibaseUrl,_hlabApiKey, _ApiHeader, blogid);
-
-            Console.WriteLine($"API Response: {responseJson}");
-            var getblog = JsonConvert.DeserializeObject<Blogs>(responseJson);
-            if (string.IsNullOrWhiteSpace(responseJson))
-            {
-                // _logger.LogWarning($"No data returned for Blog ID: {blogId}");
-                return null;
-            }
-            return getblog;
+            var jsonList = _hllWebApi.GetBlogById(blogid,_webApibaseUrl, _hlabApiKey, _ApiHeader);
+            var response = JsonConvert.DeserializeObject<Blogs>(jsonList);
+            return response;
         }
 
         public bool UpdateBlog(Blogs blog)
         {
-            var responseJson = _hllWebApi.UpdateBlog(blog, _webApibaseUrl, _hlabApiKey, _ApiHeader);
-            
-            var response = JsonConvert.DeserializeObject<bool>(responseJson);
+            var jsonList = _hllWebApi.UpdateBlog(blog, _webApibaseUrl, _hlabApiKey, _ApiHeader);
+            var response = JsonConvert.DeserializeObject<bool>(jsonList);
             return response;
         }
     }
