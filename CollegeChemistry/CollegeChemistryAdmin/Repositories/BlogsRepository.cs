@@ -27,12 +27,19 @@ namespace CollegeChemistryAdmin.Repositories
         }
         public int AddBlog(Blogs blog)
         {
-            throw new NotImplementedException();
+            
+            var responseJson = _hllWebApi.AddBlog(blog, _webApibaseUrl, _hlabApiKey, _ApiHeader);
+            var addedBlogId = JsonConvert.DeserializeObject<int>(responseJson);
+            return addedBlogId;
+            
         }
 
         public bool DeleteBlog(Blogs blog)
         {
-            throw new NotImplementedException();
+            var responseJson = _hllWebApi.DeleteBlog(blog, _webApibaseUrl, _hlabApiKey, _ApiHeader);
+
+            var response = JsonConvert.DeserializeObject<bool>(responseJson);
+            return response;
         }
 
         public IEnumerable<Blogs> GetAllBlogs()
@@ -44,12 +51,26 @@ namespace CollegeChemistryAdmin.Repositories
 
         public Blogs GetBlogById(int blogid)
         {
-            throw new NotImplementedException();
+            
+
+            var responseJson = _hllWebApi.GetBlogById(_webApibaseUrl,_hlabApiKey, _ApiHeader, blogid);
+
+            Console.WriteLine($"API Response: {responseJson}");
+            var getblog = JsonConvert.DeserializeObject<Blogs>(responseJson);
+            if (string.IsNullOrWhiteSpace(responseJson))
+            {
+                // _logger.LogWarning($"No data returned for Blog ID: {blogId}");
+                return null;
+            }
+            return getblog;
         }
 
         public bool UpdateBlog(Blogs blog)
         {
-            throw new NotImplementedException();
+            var responseJson = _hllWebApi.UpdateBlog(blog, _webApibaseUrl, _hlabApiKey, _ApiHeader);
+            
+            var response = JsonConvert.DeserializeObject<bool>(responseJson);
+            return response;
         }
     }
 }

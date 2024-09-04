@@ -21,7 +21,7 @@ namespace CollegeChemistryLibrary
 
         public string GetBlogById(string baseUrl,string ApiKey, string ApiHeader, int blogId)
         {
-            return _colchemWebApi.GetRecords(baseUrl + col_chem_api_controller_name+ "/getblogbyid?id"+ blogId, ApiKey, ApiHeader);
+            return _colchemWebApi.GetRecords(baseUrl + col_chem_api_controller_name+ "/getblogbyid?id" + "=" + blogId, ApiKey, ApiHeader);
         }
 
         public string AddBlog(Blogs blog,string baseUrl, string ApiKey, string ApiHeader)

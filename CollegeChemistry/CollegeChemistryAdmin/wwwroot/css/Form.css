@@ -1,0 +1,113 @@
+﻿/* Responsive card styles */
+.page-wrapper {
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.card-body {
+    padding: 30px;
+}
+
+.sub-title h6 {
+    font-size: 1.25rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.form-group label {
+    font-weight: 500;
+    color: #555;
+}
+
+.form-control {
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 5px;
+}
+
+.form-uploads-path {
+    padding: 20px;
+    background-color: #fafafa;
+    border: 2px dashed #ddd;
+    border-radius: 5px;
+    text-align: center;
+}
+
+    .form-uploads-path h6 {
+        font-size: 1rem;
+        color: #666;
+    }
+
+    .form-uploads-path span {
+        color: #888;
+    }
+
+.file-browse-path input[type="file"] {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.file-browse a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+    .file-browse a:hover {
+        text-decoration: underline;
+    }
+
+.file-preview ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.file-preview li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.btn-primary {
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .card-body {
+        padding: 20px;
+    }
+
+    .form-uploads-path {
+        padding: 15px;
+    }
+
+    .sub-title h6 {
+        font-size: 1.1rem;
+    }
+
+    .btn-primary {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .card-body {
+        padding: 15px;
+    }
+
+    .form-uploads-path {
+        padding: 10px;
+    }
+
+    .sub-title h6 {
+        font-size: 1rem;
+    }
+}

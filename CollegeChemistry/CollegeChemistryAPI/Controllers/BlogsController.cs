@@ -101,6 +101,7 @@ namespace CollegeChemistryAPI.Controllers
                 bool result = _college_blogs.UpdateBlog(blog);
                 if (result)
                 {
+                    
                     return Ok(new { message = "Blog updated successfully." });
                 }
                 else
