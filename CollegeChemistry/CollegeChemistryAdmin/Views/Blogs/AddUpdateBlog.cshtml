@@ -16,24 +16,14 @@
     {
         BlogForm_ActionMethod = "InsertBlog";
     }
-
     // Initialize model if it's null
     var blogModel = Model ?? new CollegeChemistryLibrary.Entities.Blogs();
 }
 @section CSS{
-
     <link rel="stylesheet" href="~/css/Form.css">
 }
 <div class="d-flex align-items-center justify-content-between mb-4">
-    @if (Blogid == 0)
-    {
-        <h1 class="mb-8">  Add Blog</h1>
-    }
-    else
-    {
-        <h1 class="mb-8">  Update Blog</h1>
-    }
-
+    <h1 class="mb-8"> @(Blogid == 0 ? "Add Blog" : "Update Blog")</h1>
 </div>
 
 
@@ -111,22 +101,12 @@
                                     }
                                  } 
                                 @{
-                                    if (Blogid == 0)
-                                    {
-                                        <div class="text-center">
-                                            <button type="submit" class="btn btn-primary">Add Blog</button>
-                                        </div>
-                                    }
-                                    else
-                                    {
-
-                                        <div class="text-center">
-                                            <button type="submit" class="btn btn-primary">Update Blog</button>
-                                        </div>
-                                    }
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary">
+                                            @(Blogid == 0 ? "Add Blog" : "Update Blog")
+                                        </button>
+                                    </div>
                                }
-
-
                             </fieldset>
                         </form>
                     </div>

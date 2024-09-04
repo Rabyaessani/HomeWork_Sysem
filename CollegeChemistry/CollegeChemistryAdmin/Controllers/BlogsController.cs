@@ -28,7 +28,7 @@ namespace CollegeChemistryAdmin.Controllers
             }
         }
 
-        public IActionResult AddBlog(int id)
+        public IActionResult AddUpdateBlog(int id)
         {
             try
             {

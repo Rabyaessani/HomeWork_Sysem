@@ -7,7 +7,7 @@
 
 <div class="d-flex align-items-center justify-content-between mb-4">
     <h1 class="mb-8">Blogs</h1>
-     <a class="btn btn-primary" asp-area="" asp-controller="Blogs" asp-action="AddBlog">
+    <a class="btn btn-primary" asp-area="" asp-controller="Blogs" asp-action="AddUpdateBlog">
         <i class="fa fa-plus me-2"></i>Add Blogs
     </a>
 </div>
@@ -59,7 +59,7 @@
                     </td>
                     <td>
                         <div class="table-actions d-flex">
-                            <a class="delete-table me-2" asp-area="" asp-controller="Blogs" asp-action="AddBlog" asp-route-id="@blog.id">
+                            <a class="delete-table me-2" asp-area="" asp-controller="Blogs" asp-action="AddUpdateBlog" asp-route-id="@blog.id">
                                 <img src="~/assets/img/edit.svg" alt="edit">
                             </a>
                             <a class="delete-table" data-bs-toggle="modal" data-bs-target="#delete-item" onclick="DeleteBlog('@blog.id')" data-service-id="@blog.id">
@@ -110,6 +110,5 @@
 <script>
     function DeleteBlog(id) {
         $("#Blog_ID_Delete").val(id);
-
     }
 </script>
