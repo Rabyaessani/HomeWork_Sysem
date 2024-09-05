@@ -36,7 +36,10 @@
                     <td>
                         @if (!string.IsNullOrEmpty(blog.content))
                         {
-                            @blog.content
+                            @Html.Raw(TruncateWords(blog.content, 3));
+                            <a style="font-size:0.75rem" class="" asp-area="" asp-controller="Blogs" asp-action="AddUpdateBlog" asp-route-id="@blog.id">
+                                Read More
+                            </a>
                         }
                         else
                         {
@@ -108,7 +111,20 @@
 </div>
 
 <script>
+    
     function DeleteBlog(id) {
         $("#Blog_ID_Delete").val(id);
     }
 </script>
+
+@functions {
+    public static string TruncateWords(string input, int wordLimit)
+    {
+        if (string.IsNullOrEmpty(input)) return input;
+
+        var words = input.Split(' ');
+        if (words.Length <= wordLimit) return input;
+
+        return string.Join(" ", words.Take(wordLimit)) + " ... ";
+    }
+}
