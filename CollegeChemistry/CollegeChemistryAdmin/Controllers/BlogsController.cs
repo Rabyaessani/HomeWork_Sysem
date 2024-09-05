@@ -83,6 +83,16 @@ namespace CollegeChemistryAdmin.Controllers
                     }
                 }
 
+                else
+                {
+                    // Fetch the existing blog data to retain the current cover picture
+                    var existingBlog = _college_chem_interface_blogs.GetBlogById(blog.id);
+                    if (existingBlog != null)
+                    {
+                        blog.cover_picture = existingBlog.cover_picture;
+                    }
+                }
+
                 blog.updated_at = DateTime.UtcNow;
                 var result = _college_chem_interface_blogs.UpdateBlog(blog);
                 if (result)
