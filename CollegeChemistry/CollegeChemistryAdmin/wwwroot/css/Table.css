@@ -1,0 +1,40 @@
+﻿.table-actions .btn {
+    display: inline-flex;
+    align-items: center;
+}
+
+    .table-actions .btn i {
+        margin-right: 4px;
+    }ss
+
+@media (max-width: 768px) {
+    .table thead {
+        display: none;
+    }
+
+    .table tbody tr {
+        display: block;
+        margin-bottom: 15px;
+        border-bottom: 2px solid #ddd;
+        padding-bottom: 10px;
+    }
+
+        .table tbody tr td {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 5px;
+            border-top: 1px solid #ddd;
+        }
+
+            .table tbody tr td:first-child {
+                display: none;
+            }
+
+            .table tbody tr td:before {
+                content: attr(data-label);
+                font-weight: bold;
+                text-transform: capitalize;
+                flex-basis: 40%;
+                margin-right: 10px;
+            }
+}
