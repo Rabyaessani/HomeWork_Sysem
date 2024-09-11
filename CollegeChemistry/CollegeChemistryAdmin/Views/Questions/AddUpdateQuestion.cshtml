@@ -1,0 +1,142 @@
+﻿@model CollegeChemistryLibrary.Entities.Questions
+@{
+    ViewData["Title"] = "Add Questions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string Form_ActionMethod = "";
+
+
+
+    int? Questionid = ViewBag.Questionid;
+    if (Questionid.HasValue && Questionid.Value != 0)
+    {
+        Form_ActionMethod = "UpdateQuestions";
+    }
+    else
+    {
+        Form_ActionMethod = "InsertQuestion";
+    }
+    // Initialize model if it's null
+    var QuestionModel = Model ?? new CollegeChemistryLibrary.Entities.Questions();
+
+    var options = new List<string> { "A", "B", "C", "D" };
+}
+@section CSS {
+    <link rel="stylesheet" href="~/css/Form.css">
+}
+<div class="d-flex align-items-center justify-content-between mb-4">
+    <h1 class="mb-8"> @(Questionid == 0 ? "Add Question" : "Update Question")</h1>
+</div>
+
+
+<div class="page-wrapper">
+    <div class="content">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10 col-sm-12">
+                <!-- Card -->
+                <div class="card">
+                    <div class="card-body">
+                        <form enctype="multipart/form-data" method="post" asp-area="" asp-controller="Questions" asp-action="@Form_ActionMethod">
+                            <fieldset id="first-field">
+                                <div class="row">
+                                    <div class="col-md-12 mb-2" hidden>
+                                        <div class="form-group">
+                                            <label for="id">Question Id</label>
+                                            <input type="text" class="form-control" id="QuestionId" name="id" value="@QuestionModel.id" readonly>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 mb-2" hidden>
+                                        <div class="form-group">
+                                            <label for="created_at">Created At</label>
+                                            <input type="text" class="form-control" id="created_at" name="created_at" value="@QuestionModel.created_at" readonly>
+                                        </div>
+                                    </div>
+
+                                    
+
+                                    <div class="col-md-12 mb-2">
+                                        <div class="form-group">
+                                            <label for="question">Create Question</label>
+                                            <textarea class="form-control" id="Question" placeholder="Enter Question" name="question" rows="6" required>@QuestionModel.question</textarea>
+                                        </div>
+                                    </div>
+
+                                    
+
+                                    <div class="col-md-6 mb-2">
+                                        <div class="form-group">
+                                            <label for="option_a">Option A</label>
+                                            <textarea class="form-control" id="option_a" placeholder="Enter Option A" name="option_a" rows="6" required>@QuestionModel.question</textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 mb-2">
+                                        <div class="form-group">
+                                            <label for="option_b">Option B</label>
+                                            <textarea class="form-control" id="option_b" placeholder="Enter Option B" name="option_b" rows="6" required>@QuestionModel.question</textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 mb-2">
+                                        <div class="form-group">
+                                            <label for="option_c">Option C</label>
+                                            <textarea class="form-control" id="option_c" placeholder="Enter Option C" name="option_c" rows="6" required>@QuestionModel.question</textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 mb-2">
+                                        <div class="form-group">
+                                            <label for="option_d">Option D</label>
+                                            <textarea class="form-control" id="option_d" placeholder="Enter Option D" name="option_d" rows="6" required>@QuestionModel.question</textarea>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-6 mb-4">
+                                      <div class="form-group">
+                                        <label for="correct_option">Correct Option</label>
+                                        <select class="form-control" id="correct_option" name="correct_option" required>
+                                        <option value="">Select Correct Option</option>
+                                            @foreach (var option in options)
+                                            {
+                                            <option value="@option">@option</option>
+                                            }
+                                        </select>
+                                      </div>
+                                   </div>
+
+
+                                   
+                                </div>
+
+                                
+
+                                @{
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary">
+                                            @(Questionid == 0 ? "Add Question" : "Update Question")
+                                        </button>
+                                    </div>
+                                }
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <!-- CKEditor CDN -->
+    <!-- Initialize CKEditor -->
+    <script>
+        CKEDITOR.replace('Question');
+        CKEDITOR.replace('option_a');
+        CKEDITOR.replace('option_b');
+         CKEDITOR.replace('option_c');
+        CKEDITOR.replace('option_d');
+    </script>
+}
+

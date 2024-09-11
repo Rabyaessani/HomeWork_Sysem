@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<Interface_Blogs, BlogsRepository>();
 builder.Services.AddScoped<Interface_Lessons, LessonsRepository>();
+builder.Services.AddScoped<Interface_Questions, QuestionsRepository>();
 
 
 var app = builder.Build();
