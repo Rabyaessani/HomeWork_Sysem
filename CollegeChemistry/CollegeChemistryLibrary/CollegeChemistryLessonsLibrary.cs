@@ -33,14 +33,14 @@ namespace CollegeChemistryLibrary
 
         }
 
-        public string UpdateLessons(Lessons lessons, string baseUrl, string ApiKey, string ApiHeader)
+        public string UpdateLesson(Lessons lessons, string baseUrl, string ApiKey, string ApiHeader)
         {
             var dataAsString = JsonConvert.SerializeObject(lessons);
             string url = $"{baseUrl}{col_chem_api_controller_name}/updatelessons";
             return _colchemWebApi.CommitPostActionWithReturn(dataAsString,url, ApiKey, ApiHeader);
         }
 
-        public string DeleteLessons(Lessons lessons, string baseUrl, string ApiKey, string ApiHeader)
+        public string DeleteLesson(Lessons lessons, string baseUrl, string ApiKey, string ApiHeader)
         {
             var dataAsString = JsonConvert.SerializeObject(lessons);
             string url = $"{baseUrl}{col_chem_api_controller_name}/deletelessons";

@@ -1,29 +1,29 @@
-﻿@model CollegeChemistryLibrary.Entities.Blogs
+﻿@model CollegeChemistryLibrary.Entities.Lessons
 @{
     ViewData["Title"] = "Add Blog";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
-    string BlogForm_ActionMethod = "";
+    string LessonForm_ActionMethod = "";
 
 
 
-    int? Blogid = ViewBag.Blogid;
-    if (Blogid.HasValue && Blogid.Value != 0)
+    int? Lessonid = ViewBag.LessonId;
+    if (Lessonid.HasValue && Lessonid.Value != 0)
     {
-        BlogForm_ActionMethod = "UpdateBlog";
+        LessonForm_ActionMethod = "UpdateLesson";
     }
     else
     {
-        BlogForm_ActionMethod = "InsertBlog";
+        LessonForm_ActionMethod = "InsertLesson";
     }
     // Initialize model if it's null
-    var blogModel = Model ?? new CollegeChemistryLibrary.Entities.Blogs();
+    var LessonModel = Model ?? new CollegeChemistryLibrary.Entities.Lessons();
 }
-@section CSS{
+@section CSS {
     <link rel="stylesheet" href="~/css/Form.css">
 }
 <div class="d-flex align-items-center justify-content-between mb-4">
-    <h1 class="mb-8"> @(Blogid == 0 ? "Add Blog" : "Update Blog")</h1>
+    <h1 class="mb-8"> @(Lessonid == 0 ? "Add Lesson" : "Update Lesson")</h1>
 </div>
 
 
@@ -34,39 +34,53 @@
                 <!-- Card -->
                 <div class="card">
                     <div class="card-body">
-                        <form enctype="multipart/form-data" method="post" asp-area="" asp-controller="Blogs" asp-action="@BlogForm_ActionMethod">
+                        <form enctype="multipart/form-data" method="post" asp-area="" asp-controller="Lessons" asp-action="@LessonForm_ActionMethod">
                             <fieldset id="first-field">
                                 <div class="row">
                                     <div class="col-md-12 mb-2" hidden>
                                         <div class="form-group">
-                                            <label for="id">Blog Id</label>
-                                            <input type="text" class="form-control" id="blogId" name="id" value="@blogModel.id" required readonly>
+                                            <label for="id">Lesson Id</label>
+                                            <input type="text" class="form-control" id="LessonId" name="id" value="@LessonModel.id"  readonly>
                                         </div>
                                     </div>
 
                                     <div class="col-md-12 mb-2" hidden>
                                         <div class="form-group">
                                             <label for="created_at">Created At</label>
-                                            <input type="text" class="form-control" id="blogId" name="created_at" value="@blogModel.created_at" required readonly>
+                                            <input type="text" class="form-control" id="created_at" name="created_at" value="@LessonModel.created_at"  readonly>
                                         </div>
                                     </div>
 
                                     <div class="col-md-12 mb-2">
                                         <div class="form-group">
-                                            <label for="title">Blog Title</label>
-                                            <input type="text" class="form-control" id="blogTitle" placeholder="Enter Title" name="title" value="@blogModel.title" required>
+                                            <label for="title">Lesson Title</label>
+                                            <input type="text" class="form-control" id="lessonTitle" placeholder="Enter Title" name="title" value="@LessonModel.title" required>
                                         </div>
                                     </div>
 
                                     <div class="col-md-12 mb-2">
                                         <div class="form-group">
-                                            <label for="content">Blog Content</label>
-                                            <textarea class="form-control" id="BlogDesc" placeholder="Enter Content" name="content" rows="5" required>@blogModel.content</textarea>
+                                            <label for="description">Lesson Description</label>
+                                            <textarea class="form-control" id="LessonDesc" placeholder="Enter Description" name="description" rows="6" required>@LessonModel.description</textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 mb-2">
+                                        <div class="form-group">
+                                            <label for="content">Lesson Content</label>
+                                            <textarea class="form-control" id="LessonContent" placeholder="Enter Content" name="content" rows="5" required>@LessonModel.content</textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 mb-2">
+                                        <div class="form-group">
+                                            <label for="youtube_video">Youtube Video Link</label>
+                                            <input type="text" class="form-control" id="youtube_video" placeholder="Enter Video link" name="youtube_video" value="@LessonModel.youtube_video" required>
                                         </div>
                                     </div>
                                 </div>
 
-                                 <div class="sub-title mb-3">
+                                <div class="sub-title mb-3">
                                     <h6>Cover Picture</h6>
                                 </div>
 
@@ -76,21 +90,21 @@
                                         <div class="file-browse">
                                             <h6>Drag & drop image or </h6>
                                             <div class="file-browse-path mt-3">
-                                                <input name="coverPicture" type="file" class="form-control-file" value="@blogModel.cover_picture">
+                                                <input name="coverPicture" type="file" class="form-control-file" value="@LessonModel.cover_picture">
                                                 @* <a href="javascript:void(0);" class="btn btn-link"> Browse</a> *@
                                             </div>
                                         </div>
-                                       
+
                                     </div>
                                 </div>
                                 @{
-                                    if (Blogid != 0)
+                                    if (Lessonid != 0)
                                     {
                                         <div class="file-preview mb-4">
                                             <ul class="list-unstyled">
-                                                @if (blogModel.cover_picture != null && blogModel.cover_picture.Length > 0)
+                                                @if (LessonModel.cover_picture != null && LessonModel.cover_picture.Length > 0)
                                                 {
-                                                    <img src="data:image/png;base64,@Convert.ToBase64String(blogModel.cover_picture)" alt="Cover Picture" style="max-width: 150px;" name="cover_picture" />
+                                                    <img src="data:image/png;base64,@Convert.ToBase64String(LessonModel.cover_picture)" alt="Cover Picture" style="max-width: 150px;" name="cover_picture" />
                                                 }
                                                 else
                                                 {
@@ -99,14 +113,14 @@
                                             </ul>
                                         </div>
                                     }
-                                 } 
+                                }
                                 @{
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-primary">
-                                            @(Blogid == 0 ? "Add Blog" : "Update Blog")
+                                            @(Lessonid == 0 ? "Add Lesson" : "Update Lesson")
                                         </button>
                                     </div>
-                               }
+                                }
                             </fieldset>
                         </form>
                     </div>
@@ -118,11 +132,9 @@
 
 @section Scripts {
     <!-- CKEditor CDN -->
-    
-
     <!-- Initialize CKEditor -->
     <script>
-        CKEDITOR.replace('BlogDesc');
+        CKEDITOR.replace('LessonContent');
     </script>
 }
 
