@@ -46,7 +46,7 @@
                             <td>
                                 @if (lesson.ispublish)
                                 {
-                                    <form asp-area="" asp-controller="Lessons" asp-action="">
+                                    <form asp-area="" asp-controller="Lessons" asp-action="Publish_Unpublish_Lesson">
                                         <input type="hidden" name="id" value="@lesson.id" />
                                         <input type="hidden" name="ispublish" value="false" />
                                         <button type="submit" class="btn btn-sm btn-danger">
@@ -56,7 +56,7 @@
                                 }
                                 else
                                 {
-                                    <form asp-area="" asp-controller="Lessons" asp-action="">
+                                    <form asp-area="" asp-controller="Lessons" asp-action="Publish_Unpublish_Lesson">
                                         <input type="hidden" name="id" value="@lesson.id" />
                                         <input type="hidden" name="ispublish" value="true" />
                                         <button type="submit" class="btn btn-sm btn-success">

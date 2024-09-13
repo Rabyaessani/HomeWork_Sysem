@@ -27,7 +27,12 @@ namespace CollegeChemistryAdmin.Repositories
             return response;
         }
 
-        public Lessons GetLessonById(int LessonId)
+        public IEnumerable<Lessons> GetAllPublishLessons(bool ispublish)
+        {
+            throw new NotImplementedException();
+        }
+
+            public Lessons GetLessonById(int LessonId)
         {
             var jsonList = _hllWebApi.GetLessonsById(_webApibaseUrl, _hlabApiKey, _ApiHeader,LessonId);
             var response = JsonConvert.DeserializeObject<Lessons>(jsonList);
@@ -51,6 +56,13 @@ namespace CollegeChemistryAdmin.Repositories
         public bool DeleteLesson(Lessons lesson)
         {
             var responseJson = _hllWebApi.DeleteLesson(lesson, _webApibaseUrl, _hlabApiKey, _ApiHeader);
+            var response = JsonConvert.DeserializeObject<bool>(responseJson);
+            return response;
+        }
+
+        public bool PublishLesson(int id, bool ispublish, DateTime? published_at)
+        {
+            var responseJson = _hllWebApi.PublishLesson(id,  ispublish,  published_at, _webApibaseUrl, _hlabApiKey, _ApiHeader);
             var response = JsonConvert.DeserializeObject<bool>(responseJson);
             return response;
         }

@@ -111,6 +111,7 @@ namespace CollegeChemistryAdmin.Controllers
             }
         }
 
+
         public IActionResult DeleteLesson(Lessons lesson)
         {
             try
@@ -124,6 +125,23 @@ namespace CollegeChemistryAdmin.Controllers
                 return View("Error");
             }
         }
+
+        [HttpPost]
+        public IActionResult Publish_Unpublish_Lesson(Lessons lesson)
+        {
+            try
+            {
+               
+                var result = _college_chem_interface_lessons.PublishLesson(lesson.id, lesson.ispublish, lesson.published_at);
+                return RedirectToAction("Index", "Lessons");
+            }
+            catch (Exception xc)
+            {
+                _logger.LogError(xc.ToString());
+                return View("Error");
+            }
+        }
+
 
     }
 }
