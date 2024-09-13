@@ -40,9 +40,7 @@ export default function McqCard({
 }) {
   const [selected, setSelected] = useState("");
 
-  const sanitizedQuestionText = sanitizeHtml(question_text);
   
-
   const handleChange = (value) => {
     const lastItem = value[value.length - 1];
     setSelected(lastItem);
@@ -50,8 +48,13 @@ export default function McqCard({
 
   return (
     <div className="flex flex-col gap-3 bg-foreground-100/50 sm:p-5 py-5 px-2 rounded-xl">
+      <div className="text-xl text-slate-500">
+      {/* Use a div for rendering the sanitized question text */}
+      <div dangerouslySetInnerHTML={{ __html: question_text }} />
+      </div>
+
       <CheckboxGroup
-        label={`${id}. ${question_text}`}
+        // label={`${question_text}`}
         value={[selected]}
         onValueChange={handleChange}
         size="sm"
