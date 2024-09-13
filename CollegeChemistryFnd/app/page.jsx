@@ -2,16 +2,41 @@ import NextImage from "next/image";
 import ScienceBroS from "../public/chemistry-lab-animate.svg";
 import { DisplayBlogs } from "./components/BlogCard";
 
+// async function getFirstSix() {
+//   const res = await fetch(
+//     process.env.BACKEND_URL +
+//       "/api/blogs/allblogs",
+//     {
+//       cache: "no-store",
+//     }
+//   );
+//   return res.json();
+// }
+
 async function getFirstSix() {
-  const res = await fetch(
-    process.env.BACKEND_URL +
-      "/api/blogs/?populate[0]=cover&fields[0]=title&fields[1]=slug&pagination[limit]=6",
-    {
-      cache: "no-store",
+  try {
+    const res = await fetch(
+      process.env.BACKEND_URL + "/api/blogs/allblogs",
+      {
+        cache: "no-store",
+      }
+    );
+    
+    // Check if the response is ok (status code in the range 200-299)
+    if (!res.ok) {
+      throw new Error(`Failed to fetch: ${res.status} ${res.statusText}`);
     }
-  );
-  return res.json();
+    
+    const data = await res.json();
+    console.log("data",data)
+    return data;
+    
+  } catch (error) {
+    console.log("Error fetching blogs:", error);
+    return error; // or handle it as per your requirement
+  }
 }
+
 
 function TypographyH1({ content }) {
   return (
@@ -37,8 +62,10 @@ function TypographyH3({ children }) {
 }
 
 export default async function Home() {
-  const data = await getFirstSix();
-  const first_six = data.data;
+   const data2 = await getFirstSix();
+   console.log("data2",data2)
+   console.log("Hello world")
+  const first_six = data2.data;
   return (
     <main>
       <section className="sm:h-[calc(100vh-65px)] md:bg-blob-haikei bg-contain bg-no-repeat flex flex-col-reverse sm:flex-row-reverse justify-evenly items-center mr-6">
@@ -64,6 +91,7 @@ export default async function Home() {
           className="grid place-content-center grid-cols-3 gap-4  w-fit"
         ></div>
         <DisplayBlogs blogs={first_six} />
+        {/* <DisplayBlogs/> */}
       </section>
     </main>
   );
