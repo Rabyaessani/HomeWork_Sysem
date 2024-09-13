@@ -25,6 +25,12 @@ namespace CollegeChemistryLibrary
             return _colchemWebApi.GetRecords(url, ApiKey, ApiHeader);
         }
 
+        public string GetAllPublishLessons(string baseUrl, string ApiKey, string ApiHeader, bool ispublish)
+        {
+            string url = $"{baseUrl}{col_chem_api_controller_name}/allPublishedLessons?ispublish={ispublish}";
+            return _colchemWebApi.GetRecords(url, ApiKey, ApiHeader);
+        }
+
         public string AddLesson(Lessons lesson,string baseUrl, string ApiKey, string ApiHeader)
         {
             var dataAsString = JsonConvert.SerializeObject(lesson);
@@ -46,5 +52,25 @@ namespace CollegeChemistryLibrary
             string url = $"{baseUrl}{col_chem_api_controller_name}/deletelessons";
             return _colchemWebApi.CommitPostActionWithReturn(dataAsString, url, ApiKey, ApiHeader);
         }
+
+        public string PublishLesson(int id, bool ispublish, DateTime? published_at, string baseUrl, string ApiKey, string ApiHeader)
+        {
+            var publishData = new
+            {
+                id,
+                ispublish,
+                published_at
+            };
+
+            // Serialize the object to JSON
+            var dataAsString = JsonConvert.SerializeObject(publishData);
+
+            
+            string url = $"{baseUrl}{col_chem_api_controller_name}/Publishlesson";
+
+            
+            return _colchemWebApi.CommitPostActionWithReturn(dataAsString, url, ApiKey, ApiHeader);
+        }
+
     }
 }

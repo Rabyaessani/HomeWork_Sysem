@@ -62,6 +62,21 @@ namespace CollegeChemistryAPI.Repositories
             }
         }
 
+        public IEnumerable<Lessons> GetAllPublishLessons(bool ispublish)
+        {
+            try
+            {
+                return _college_chemistry_Db_Context.Lessons
+                  .Where(l => l.ispublish == ispublish)
+                  .ToList();
+            }
+            catch (Exception exc)
+            {
+                _logger.LogError($"essonsRepository > GetAllLessons() {exc.ToString()}");
+                return null;
+            }
+        }
+
         public Lessons GetLessonById(int LessonId)
         {
             try
@@ -91,5 +106,36 @@ namespace CollegeChemistryAPI.Repositories
                 return false;
             }
         }
+
+        public bool PublishLesson(int id, bool ispublish, DateTime? published_at)
+        {
+            try
+            {
+                // Find the lesson by its ID
+                var lesson = _college_chemistry_Db_Context.Lessons.FirstOrDefault(l => l.id == id);
+
+                
+                if (lesson != null)
+                {
+                    lesson.ispublish = ispublish; // Update only the isPublish field
+                    lesson.published_at = published_at;
+                    _college_chemistry_Db_Context.SaveChanges(); // Save changes to the database
+                    return true;
+                }
+                else
+                {
+                    
+                    _logger.LogError($"Lesson with ID {id} not found.");
+                    return false;
+                }
+            }
+            catch (Exception exc)
+            {
+                
+                _logger.LogError($"LessonsRepository > PublishLesson() {exc.ToString()}");
+                return false;
+            }
+        }
+
     }
 }

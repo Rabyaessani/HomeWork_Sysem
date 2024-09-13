@@ -38,6 +38,21 @@ namespace CollegeChemistryAPI.Controllers
             }
         }
 
+        [HttpGet("allPublishedLessons")]
+        public ActionResult GetPublishLessons(bool ispublish)
+        {
+            try
+            {
+                var result = _college_Lessons.GetAllPublishLessons(ispublish);
+                return Ok(result);
+
+            }
+            catch (Exception xc)
+            {
+                return BadRequest("Get Published lessons by  Exception Error: " + xc);
+            }
+        }
+
         [HttpGet("getlessonbyid")]
         public ActionResult GetLessonsById(int id)
         {
@@ -53,6 +68,29 @@ namespace CollegeChemistryAPI.Controllers
             }
         }
 
+        [HttpPost("Publishlesson")]
+        public ActionResult PublishLesson([FromBody] Lessons lesson)
+        {
+            int id = lesson.id;
+            bool ispublish = lesson.ispublish;
+            DateTime? published_at=lesson.published_at;
+
+            if (ispublish == true)
+            {
+                published_at = DateTime.UtcNow;
+            }
+            
+            try
+            {
+                var result = _college_Lessons.PublishLesson(id,ispublish,published_at);
+                return Ok(result);
+            }
+            catch (Exception xc)
+            {
+                return BadRequest("PublishLessons  Exception Error: " + xc);
+            }
+
+        }
 
         [HttpPost("addlesson")]
         public ActionResult AddLesson([FromBody] Lessons lesson)

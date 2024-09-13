@@ -14,5 +14,10 @@ namespace CollegeChemistryLibrary.Interfaces
         int AddLesson(Lessons lesson);
         bool UpdateLesson(Lessons lesson);
         bool DeleteLesson(Lessons lesson);
+
+        bool PublishLesson(int id, bool ispublish, DateTime? published_at);
+
+        IEnumerable<Lessons> GetAllPublishLessons(bool ispublish);
+
     }
 }
