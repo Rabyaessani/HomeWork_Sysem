@@ -3,11 +3,11 @@ import NextLink from "next/link";
 import NextImage from "next/image";
 import MyPagination from "./pagination";
 
-async function getBlogs(limit) {
+async function getBlogs() {
   try {
     const res = await fetch(
       process.env.BACKEND_URL +
-        `/api/blogs/?populate[0]=cover&fields[0]=title&fields[1]=slug&fields[2]=description&pagination[limit]=${limit}`,
+        `/blogs/allPublishedBlogs?ispublish=true`,
       {
         cache: "no-store",
       }
