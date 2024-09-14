@@ -14,5 +14,9 @@ namespace CollegeChemistryLibrary.Interfaces
         int AddQuestion(Questions question);
         bool UpdateQuestion(Questions question);
         bool DeleteQuestion(Questions question);
+
+        bool PublishQuestions(int id, bool ispublish, DateTime? published_at);
+
+        IEnumerable<Questions> GetAllPublishQuestion(bool ispublish);
     }
 }

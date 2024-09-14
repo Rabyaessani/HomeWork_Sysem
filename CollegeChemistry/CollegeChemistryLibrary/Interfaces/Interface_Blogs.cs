@@ -14,5 +14,10 @@ namespace CollegeChemistryLibrary.Interfaces
         int AddBlog(Blogs blog);
         bool UpdateBlog(Blogs blog);
         bool DeleteBlog(Blogs blog);
+
+        bool PublishBlog(int id, bool ispublish, DateTime? published_at);
+
+        IEnumerable<Blogs> GetAllPublishBlogs(bool ispublish);
+
     }
 }

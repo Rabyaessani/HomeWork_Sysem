@@ -53,6 +53,21 @@ namespace CollegeChemistryAPI.Controllers
             }
         }
 
+        [HttpGet("allPublishedBlogs")]
+        public ActionResult GetPublishLessons(bool ispublish)
+        {
+            try
+            {
+                var result = _college_blogs.GetAllPublishBlogs(ispublish);
+                return Ok(result);
+
+            }
+            catch (Exception xc)
+            {
+                return BadRequest("Get Published Blogs by  Exception Error: " + xc);
+            }
+        }
+
         [HttpPost("addblog")]
         public ActionResult AddBlogs([FromBody] Blogs blog)
         {
@@ -96,6 +111,31 @@ namespace CollegeChemistryAPI.Controllers
             }
 
         }
+
+        [HttpPost("Publishblog")]
+        public ActionResult PublishLesson([FromBody] Blogs blog)
+        {
+            int id = blog.id;
+            bool ispublish = blog.ispublish;
+            DateTime? published_at = blog.published_at;
+
+            if (ispublish == true)
+            {
+                published_at = DateTime.UtcNow;
+            }
+
+            try
+            {
+                var result = _college_blogs.PublishBlog(id, ispublish, published_at);
+                return Ok(result);
+            }
+            catch (Exception xc)
+            {
+                return BadRequest("PublishBlog  Exception Error: " + xc);
+            }
+
+        }
+
     }
 
 }

@@ -40,6 +40,11 @@ namespace CollegeChemistryAdmin.Repositories
             return response;
         }
 
+        public IEnumerable<Questions> GetAllPublishQuestion(bool ispublish)
+        {
+            throw new NotImplementedException();
+        }
+
         public Questions GetQuestionById(int questionid)
         {
             var jsonList = _hllWebApi.GetQuestionById( _webApibaseUrl, _hlabApiKey, _ApiHeader , questionid);
@@ -51,6 +56,13 @@ namespace CollegeChemistryAdmin.Repositories
         {
             var jsonList = _hllWebApi.UpdateQuestion(question, _webApibaseUrl, _hlabApiKey, _ApiHeader);
             var response = JsonConvert.DeserializeObject<bool>(jsonList);
+            return response;
+        }
+
+        public bool PublishQuestions(int id, bool ispublish, DateTime? published_at)
+        {
+            var responseJson = _hllWebApi.PublishQuestions(id, ispublish, published_at, _webApibaseUrl, _hlabApiKey, _ApiHeader);
+            var response = JsonConvert.DeserializeObject<bool>(responseJson);
             return response;
         }
     }

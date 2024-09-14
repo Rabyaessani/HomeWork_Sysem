@@ -35,6 +35,21 @@ namespace CollegeChemistryAPI.Controllers
             }
         }
 
+        [HttpGet("allPublishedQuestions")]
+        public ActionResult GetAllPublishQuestion(bool ispublish)
+        {
+            try
+            {
+                var result = _college_Questions.GetAllPublishQuestion(ispublish);
+                return Ok(result);
+
+            }
+            catch (Exception xc)
+            {
+                return BadRequest("Get Published QUESTIONS by  Exception Error: " + xc);
+            }
+        }
+
         [HttpGet("getQuestionbyid")]
         public ActionResult GetQuestionsById(int id)
         {
@@ -94,6 +109,31 @@ namespace CollegeChemistryAPI.Controllers
 
         }
 
+
+
+        [HttpPost("Publishquestions")]
+        public ActionResult PublishQuestions([FromBody] Questions questions)
+        {
+            int id = questions.id;
+            bool ispublish = questions.ispublish;
+            DateTime? published_at = questions.published_at;
+
+            if (ispublish == true)
+            {
+                published_at = DateTime.UtcNow;
+            }
+
+            try
+            {
+                var result = _college_Questions.PublishQuestions(id, ispublish, published_at);
+                return Ok(result);
+            }
+            catch (Exception xc)
+            {
+                return BadRequest("Publish Questions  Exception Error: " + xc);
+            }
+
+        }
 
     }
 }

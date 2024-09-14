@@ -43,7 +43,7 @@
                             <td>
                                 @if (question.ispublish)
                                 {
-                                    <form asp-area="" asp-controller="" asp-action="">
+                                    <form asp-area="" asp-controller="Questions" asp-action="Publish_Unpublish_Questions">
                                         <input type="hidden" name="id" value="@question.id" />
                                         <input type="hidden" name="ispublish" value="false" />
                                         <button type="submit" class="btn btn-sm btn-danger">
@@ -53,7 +53,7 @@
                                 }
                                 else
                                 {
-                                    <form asp-area="" asp-controller="" asp-action="">
+                                    <form asp-area="" asp-controller="Questions" asp-action="Publish_Unpublish_Questions">
                                         <input type="hidden" name="id" value="@question.id" />
                                         <input type="hidden" name="ispublish" value="true" />
                                         <button type="submit" class="btn btn-sm btn-success">

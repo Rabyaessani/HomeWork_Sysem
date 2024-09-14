@@ -17,6 +17,13 @@ namespace CollegeChemistryLibrary
         {
             return _colchemWebApi.GetRecords(baseUrl + col_chem_api_controller_name + "/allQuestions/", ApiKey, ApiHeader);
         }
+
+        public string GetAllPublishQuestion(string baseUrl, string ApiKey, string ApiHeader, bool ispublish)
+        {
+            string url = $"{baseUrl}{col_chem_api_controller_name}/allPublishedQuestions?ispublish={ispublish}";
+            return _colchemWebApi.GetRecords(url, ApiKey, ApiHeader);
+        }
+
         public string GetQuestionById(string baseUrl, string ApiKey, string ApiHeader, int Questionid)
         {
             string url = $"{baseUrl}{col_chem_api_controller_name}/getQuestionbyid?id={Questionid}";
@@ -42,6 +49,25 @@ namespace CollegeChemistryLibrary
         {
             var dataAsString = JsonConvert.SerializeObject(questions);
             string url = $"{baseUrl}{col_chem_api_controller_name}/deletequestion";
+            return _colchemWebApi.CommitPostActionWithReturn(dataAsString, url, ApiKey, ApiHeader);
+        }
+
+        public string PublishQuestions(int id, bool ispublish, DateTime? published_at, string baseUrl, string ApiKey, string ApiHeader)
+        {
+            var publishData = new
+            {
+                id,
+                ispublish,
+                published_at
+            };
+
+            // Serialize the object to JSON
+            var dataAsString = JsonConvert.SerializeObject(publishData);
+
+
+            string url = $"{baseUrl}{col_chem_api_controller_name}/Publishquestions";
+
+
             return _colchemWebApi.CommitPostActionWithReturn(dataAsString, url, ApiKey, ApiHeader);
         }
     }

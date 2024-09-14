@@ -92,5 +92,49 @@ namespace CollegeChemistryAPI.Repositories
                 return false;
             }
         }
+
+        public bool PublishBlog(int id, bool ispublish, DateTime? published_at)
+        {
+            try
+            {
+                // Find the lesson by its ID
+                var blog = _college_chemistry_Db_Context.Blogs.FirstOrDefault(b => b.id == id);
+
+
+                if (blog != null)
+                {
+                    blog.ispublish = ispublish; // Update only the isPublish field
+                    blog.published_at = published_at;
+                    _college_chemistry_Db_Context.SaveChanges(); // Save changes to the database
+                    return true;
+                }
+                else
+                {
+
+                    _logger.LogError($"Blog with ID {id} not found.");
+                    return false;
+                }
+            }
+            catch (Exception exc)
+            {
+
+                _logger.LogError($"blogRepository > PublishBlog() {exc.ToString()}");
+                return false;
+            }
+        }
+        public IEnumerable<Blogs> GetAllPublishBlogs(bool ispublish)
+        {
+            try
+            {
+                return _college_chemistry_Db_Context.Blogs
+                  .Where(b => b.ispublish == ispublish)
+                  .ToList();
+            }
+            catch (Exception exc)
+            {
+                _logger.LogError($"blogsRepository > GetAllPublishblogs() {exc.ToString()}");
+                return null;
+            }
+        }
     }
 }

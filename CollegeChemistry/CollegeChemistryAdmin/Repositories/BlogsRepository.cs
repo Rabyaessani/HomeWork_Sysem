@@ -59,5 +59,17 @@ namespace CollegeChemistryAdmin.Repositories
             var response = JsonConvert.DeserializeObject<bool>(jsonList);
             return response;
         }
+
+        public IEnumerable<Blogs> GetAllPublishBlogs(bool ispublish)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool PublishBlog(int id, bool ispublish, DateTime? published_at)
+        {
+            var responseJson = _hllWebApi.PublishBlog(id, ispublish, published_at, _webApibaseUrl, _hlabApiKey, _ApiHeader);
+            var response = JsonConvert.DeserializeObject<bool>(responseJson);
+            return response;
+        }
     }
 }

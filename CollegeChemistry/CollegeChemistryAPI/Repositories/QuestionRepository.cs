@@ -63,6 +63,21 @@ namespace CollegeChemistryAPI.Repositories
             }
         }
 
+        public IEnumerable<Questions> GetAllPublishQuestion(bool ispublish)
+        {
+            try
+            {
+                return _college_chemistry_Db_Context.Questions
+                  .Where(q => q.ispublish == ispublish)
+                  .ToList();
+            }
+            catch (Exception exc)
+            {
+                _logger.LogError($"QuestionsRepository > GetAllQuestions() {exc.ToString()}");
+                return null;
+            }
+        }
+
         public Questions GetQuestionById(int Questionid)
         {
             try
@@ -88,6 +103,36 @@ namespace CollegeChemistryAPI.Repositories
             {
 
                 _logger.LogError($"QuestiosRepository > UpdateQuestions() {exc.ToString()}");
+                return false;
+            }
+        }
+
+        public bool PublishQuestions(int id, bool ispublish, DateTime? published_at)
+        {
+            try
+            {
+                // Find the lesson by its ID
+                var questions = _college_chemistry_Db_Context.Questions.FirstOrDefault(q => q.id == id);
+
+
+                if (questions != null)
+                {
+                    questions.ispublish = ispublish; // Update only the isPublish field
+                    questions.published_at = published_at;
+                    _college_chemistry_Db_Context.SaveChanges(); // Save changes to the database
+                    return true;
+                }
+                else
+                {
+
+                    _logger.LogError($"question with ID {id} not found.");
+                    return false;
+                }
+            }
+            catch (Exception exc)
+            {
+
+                _logger.LogError($"QuestionRepository > PublishQuestion() {exc.ToString()}");
                 return false;
             }
         }

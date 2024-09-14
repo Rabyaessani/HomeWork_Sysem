@@ -97,6 +97,21 @@ namespace CollegeChemistryAdmin.Controllers
             }
         }
 
+        public IActionResult Publish_Unpublish_Questions(Questions questions)
+        {
+            try
+            {
+
+                var result = _college_chem_interface_questions.PublishQuestions(questions.id, questions.ispublish, questions.published_at);
+                return RedirectToAction("Index", "Questions");
+            }
+            catch (Exception xc)
+            {
+                _logger.LogError(xc.ToString());
+                return View("Error");
+            }
+        }
+
 
     }
 }

@@ -127,5 +127,20 @@ namespace CollegeChemistryAdmin.Controllers
             }
         }
 
+        public IActionResult Publish_Unpublish_Blogs(Blogs blog)
+        {
+            try
+            {
+
+                var result = _college_chem_interface_blogs.PublishBlog(blog.id, blog.ispublish, blog.published_at);
+                return RedirectToAction("Index", "Blogs");
+            }
+            catch (Exception xc)
+            {
+                _logger.LogError(xc.ToString());
+                return View("Error");
+            }
         }
+
+    }
 }
