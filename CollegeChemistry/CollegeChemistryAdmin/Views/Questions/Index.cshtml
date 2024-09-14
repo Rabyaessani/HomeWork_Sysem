@@ -47,7 +47,7 @@
                             <td>
                                 <form asp-area="" asp-controller="Questions" asp-action="Publish_Unpublish_Questions">
                                     <input type="hidden" name="id" value="@question.id" />
-                                    <input type="hidden" name="ispublish" value="@(!question.ispublish).ToString().ToLower()" />
+                                    <input type="hidden" name="ispublish" value="@(question.ispublish ? " false" : "true")" />
                                     <button type="submit" class="btn btn-sm @(question.ispublish ? "btn-danger" : "btn-success")">
                                         <i class="fa @(question.ispublish ? "fa-times" : "fa-check")"></i>
                                         @(question.ispublish ? "Unpublish" : "Publish")
