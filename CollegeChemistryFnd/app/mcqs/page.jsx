@@ -5,7 +5,7 @@ import sanitizeHtml from 'sanitize-html';
 
 async function getMcqs() {
   try {
-    const res = await fetch(process.env.BACKEND_URL + "/api/questions/allQuestions", {
+    const res = await fetch(process.env.BACKEND_URL + "/Questions/allPublishedQuestions?ispublish=true", {
       cache: "no-store",
     });
     return res.json();

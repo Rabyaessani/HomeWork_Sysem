@@ -16,42 +16,31 @@ export const metadata = {
   title: "Lessons",
 };
 
-async function getLessons(category, limit) {
+async function getLessons() {
   try {
-    if (category == "") {
-      const res = await fetch(
-        process.env.BACKEND_URL +
-          `/api/lessons?populate=*&fields[0]=title&fields[1]=slug&fields[2]=description&pagination[limit]=${limit}`,
-        {
-          cache: "no-store",
-        }
-      );
-      return res.json();
-    } else {
-      const res = await fetch(
-        process.env.BACKEND_URL +
-          `/api/lessons?populate=*&fields[0]=title&fields[1]=slug&fields[2]=description&pagination[limit]=${limit}&filters[categories][name][$eqi]=${category}`,
-        {
-          cache: "no-store",
-        }
-      );
-      return res.json();
-    }
-  } catch (error) {
-    return { error: error.message || "An error occured" };
-  }
-}
+    const res = await fetch(
+      `${process.env.BACKEND_URL}/api/lessons/allPublishedLessons?ispublish=true`,
+      {
+        cache: "no-store",
+      }
+    );
 
-async function getCategories() {
-  try {
-    const res = await fetch(process.env.BACKEND_URL + "/api/categories", {
-      cache: "no-store",
-    });
     return res.json();
   } catch (error) {
     return { error: error.message || "An error occured" };
   }
 }
+
+// async function getCategories() {
+//   try {
+//     const res = await fetch(process.env.BACKEND_URL + "/api/categories", {
+//       cache: "no-store",
+//     });
+//     return res.json();
+//   } catch (error) {
+//     return { error: error.message || "An error occured" };
+//   }
+// }
 
 function CardComponent({ lesson }) {
   return (
@@ -59,30 +48,28 @@ function CardComponent({ lesson }) {
       className="max-w-[300px] group hover:shadow-lg transition duration-300 ease-in-out rounded-lg overflow-hidden shadow-lg "
       radius="none"
       as={NextLink}
-      href={"/lessons/" + lesson.attributes.slug}
+      href={"/lessons/" + lesson.id}
     >
       <CardHeader className="p-0">
-        <Image
-          src={
-            process.env.BACKEND_URL +
-            lesson.attributes.cover.data.attributes.url
-          }
-          as={NextImage}
-          alt={lesson.attributes.title}
-          className="w-[300px] h-[220px] object-cover rounded-none"
-          width={lesson.attributes.cover.data.attributes.width}
-          height={lesson.attributes.cover.data.attributes.height}
-        />
+        {lesson?.cover_picture ? (
+          <Image
+            src={`data:image/jpeg;base64,${lesson.cover_picture}`}
+            as={NextImage}
+            alt={lesson.title}
+            className="w-[300px] h-[220px] object-cover rounded-none"
+            width={300} 
+            height={220} 
+          />
+        ) : null}{" "}
+       
       </CardHeader>
       <CardBody className="">
         <h1 className="text-2xl font-bold group-hover:text-pink-600">
-          {lesson.attributes.title}
+          {lesson.title}
         </h1>
-        <p className="pt-1 text-sm line-clamp-3 ">
-          {lesson.attributes.description}
-        </p>
+        <p className="pt-1 text-sm line-clamp-3 ">{lesson.description}</p>
       </CardBody>
-      <CardFooter className="gap-2 flex flex-row flex-wrap pt-0">
+      {/* <CardFooter className="gap-2 flex flex-row flex-wrap pt-0">
         {lesson.attributes.categories.data.map((category) => (
           <Chip
             key={category.attributes.name}
@@ -96,16 +83,17 @@ function CardComponent({ lesson }) {
             # {category.attributes.name}
           </Chip>
         ))}
-      </CardFooter>
+      </CardFooter> */}
     </Card>
   );
 }
 
-export default async function lessons({ searchParams }) {
-  const category = searchParams["category"] ?? "";
-  const limit = searchParams["limit"] || 10;
-  const data = await getLessons(category, limit);
-  const lessons = data.data;
+export default async function lessons() {
+  //const category = searchParams["category"] ?? "";
+  //const limit = searchParams["limit"] || 10;
+  const data = await getLessons();
+  console.log("data", data);
+  //const lessons = data;
 
   if (data.error) {
     return (
@@ -116,7 +104,7 @@ export default async function lessons({ searchParams }) {
       </main>
     );
   }
-  if (data.data.length === 0) {
+  if (data.length === 0) {
     return (
       <main className="container p-3 grid place-content-center min-h-screen">
         <h1 className="text-4xl font-bold pb-9">No Lessons Published Yet</h1>
@@ -124,20 +112,20 @@ export default async function lessons({ searchParams }) {
     );
   }
 
-  const categories = await getCategories();
-  if (categories.error) {
-    return (
-      <main className="container p-3 grid place-content-center min-h-screen">
-        <h1 className="text-4xl font-bold pb-9">
-          Error while fetching Categories
-        </h1>
-      </main>
-    );
-  }
+  // const categories = await getCategories();
+  // if (categories.error) {
+  //   return (
+  //     <main className="container p-3 grid place-content-center min-h-screen">
+  //       <h1 className="text-4xl font-bold pb-9">
+  //         Error while fetching Categories
+  //       </h1>
+  //     </main>
+  //   );
+  // }
 
   return (
     <main className="container mx-auto grid p-5 justify-center min-h-[90vh]">
-      {categories.data.length > 0 && (
+      {/* {categories.data.length > 0 && (
         <div className="w-fit md:ml-auto md:mr-0 ml-auto mr-auto">
           <CategorySelect
             categories={categories.data}
@@ -145,18 +133,18 @@ export default async function lessons({ searchParams }) {
             category={category}
           />
         </div>
-      )}
+      )} */}
 
       <section className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-4 place-content-center">
-        {lessons.map((lesson) => (
-          <CardComponent lesson={lesson} key={lesson.attributes.slug} />
+        {data.map((lesson) => (
+          <CardComponent lesson={lesson} key={lesson.id} />
         ))}
       </section>
-      <MyPagination
+      {/* <MyPagination
         total={data.meta.pagination.total}
-        limit={limit}
-        category={category}
-      />
+        imit={limit}
+       category={category}
+      /> */}
     </main>
   );
 }
