@@ -21,12 +21,9 @@
                <th>#</th>
                <th>Title</th>
                <th>Content</th>
-               <th>Created At</th>
-               <th>Updated At</th>
-               <th>Published At</th>
-               <th>Publish</th>
                <th>Cover Picture</th>
                <th>Edit/Delete</th>
+               <th>Publish</th>
             </tr>
             </thead>
       <tbody> 
@@ -36,7 +33,7 @@
             @foreach (var blog in Model)
             {
                 <tr>
-                            <td>@count</td>
+                    <td>@count</td>
                     <td>@blog.title</td>
                     <td>
                         @if (!string.IsNullOrEmpty(blog.content))
@@ -51,31 +48,6 @@
                             <span>No Content Available</span>
                         }
                     </td>
-                    <td>@blog.created_at?.ToString("MM/dd/yyyy")</td>
-                    <td>@blog.updated_at?.ToString("MM/dd/yyyy")</td>
-                    <td>@(blog.published_at.HasValue ? blog.published_at.Value.ToString("MM/dd/yyyy") : "Not Published")</td>
-                            <td>
-                                @if (blog.ispublish)
-                                {
-                                    <form asp-area="" asp-controller="Blogs" asp-action="Publish_Unpublish_Blogs">
-                                        <input type="hidden" name="id" value="@blog.id" />
-                                        <input type="hidden" name="ispublish" value="false" />
-                                        <button type="submit" class="btn btn-sm btn-danger">
-                                            <i class="fa fa-times"></i> Unpublish
-                                        </button>
-                                    </form>
-                                }
-                                else
-                                {
-                                    <form asp-area="" asp-controller="Blogs" asp-action="Publish_Unpublish_Blogs">
-                                        <input type="hidden" name="id" value="@blog.id" />
-                                        <input type="hidden" name="ispublish" value="true" />
-                                        <button type="submit" class="btn btn-sm btn-success">
-                                            <i class="fa fa-check"></i> Publish
-                                        </button>
-                                    </form>
-                                }
-                            </td>
                     <td>
                         @if (blog.cover_picture != null && blog.cover_picture.Length > 0)
                         {
@@ -97,6 +69,16 @@
                           
                         </div>
                     </td>
+                            <td>
+                                <form asp-area="" asp-controller="Blogs" asp-action="Publish_Unpublish_Blogs">
+                                    <input type="hidden" name="id" value="@blog.id" />
+                                    <input type="hidden" name="ispublish" value="@(!blog.ispublish).ToString().ToLower()" />
+                                    <button type="submit" class="btn btn-sm @(blog.ispublish ? "btn-danger" : "btn-success")">
+                                        <i class="fa @(blog.ispublish ? "fa-times" : "fa-check")"></i>
+                                        @(blog.ispublish ? "Unpublish" : "Publish")
+                                    </button>
+                                </form>
+                            </td>
                 </tr>
                 count++;
             }
