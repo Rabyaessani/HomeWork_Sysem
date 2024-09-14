@@ -36,7 +36,7 @@
                 <!-- Card -->
                 <div class="card">
                     <div class="card-body">
-                        <form enctype="multipart/form-data" method="post" asp-area="" asp-controller="Questions" asp-action="@Form_ActionMethod">
+                        <form id="yourFormId" enctype="multipart/form-data" method="post" asp-area="" asp-controller="Questions" asp-action="@Form_ActionMethod" onsubmit="return validateEditors()">
                             <fieldset id="first-field">
                                 <div class="row">
                                     <div class="col-md-12 mb-2" hidden>
@@ -121,6 +121,13 @@
                                 }
                             </fieldset>
                         </form>
+
+                        <!-- Error Alert -->
+                        <div id="errorAlert" class="alert alert-danger alert-dismissible fade show" style="display: none;">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <strong>Error!</strong> <span id="errorMessage"></span>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -137,6 +144,44 @@
         CKEDITOR.replace('option_b');
          CKEDITOR.replace('option_c');
         CKEDITOR.replace('option_d');
+
+        function validateEditors() {
+            let isValid = true; // Assume form is valid
+
+            // Array of CKEditor instances to validate
+            const editors = ['Question', 'option_a', 'option_b', 'option_c', 'option_d'];
+
+            editors.forEach((editor) => {
+                const editorData = CKEDITOR.instances[editor].getData().trim();
+
+                // Check if the editor content is empty
+                if (editorData === '') {
+                    showError(`Missing Fields.`); // Show error using custom alert
+                    isValid = false; // Set form validity to false
+                }
+            });
+
+            return isValid; // If false, form will not submit
+        }
+
+
+        function showError(message) {
+            const errorAlert = document.getElementById('errorAlert');
+            const errorMessage = document.getElementById('errorMessage');
+
+            errorMessage.textContent = message; // Set the error message
+            errorAlert.style.display = 'block'; // Show the alert
+
+            // Automatically hide the alert after 3 seconds
+            setTimeout(() => {
+                errorAlert.style.display = 'none';
+            }, 3000);
+        }
+
+        // Close button functionality
+        document.querySelector('.close').addEventListener('click', function () {
+            document.getElementById('errorAlert').style.display = 'none';
+        });
     </script>
 }
 

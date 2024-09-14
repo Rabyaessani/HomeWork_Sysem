@@ -46,9 +46,9 @@ namespace CollegeChemistryAdmin.Repositories
             return response;
         }
 
-        public bool UpdateLesson(Lessons lesson)
+        public bool UpdateLesson(Lessons lessons)
         {
-            var jsonList = _hllWebApi.UpdateLesson(lesson, _webApibaseUrl, _hlabApiKey, _ApiHeader);
+            var jsonList = _hllWebApi.UpdateLesson(lessons, _webApibaseUrl, _hlabApiKey, _ApiHeader);
             var response = JsonConvert.DeserializeObject<bool>(jsonList);
             return response;
         }

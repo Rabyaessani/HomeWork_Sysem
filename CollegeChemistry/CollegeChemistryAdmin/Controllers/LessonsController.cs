@@ -68,7 +68,7 @@ namespace CollegeChemistryAdmin.Controllers
         }
 
         [HttpPost]
-        public IActionResult UpdateLesson(Lessons lesson, IFormFile coverPicture)
+        public IActionResult UpdateLesson(Lessons lessons, IFormFile coverPicture)
         {
             try
             {
@@ -77,22 +77,22 @@ namespace CollegeChemistryAdmin.Controllers
                     using (var memoryStream = new MemoryStream())
                     {
                         coverPicture.CopyToAsync(memoryStream);
-                        lesson.cover_picture = memoryStream.ToArray();
+                        lessons.cover_picture = memoryStream.ToArray();
                     }
                 }
 
                 else
                 {
                     // Fetch the existing blog data to retain the current cover picture
-                    var existingBlog = _college_chem_interface_lessons.GetLessonById(lesson.id);
+                    var existingBlog = _college_chem_interface_lessons.GetLessonById(lessons.id);
                     if (existingBlog != null)
                     {
-                        lesson.cover_picture = existingBlog.cover_picture;
+                        lessons.cover_picture = existingBlog.cover_picture;
                     }
                 }
 
-                lesson.updated_at = DateTime.UtcNow;
-                var result = _college_chem_interface_lessons.UpdateLesson(lesson);
+                lessons.updated_at = DateTime.UtcNow;
+                var result = _college_chem_interface_lessons.UpdateLesson(lessons);
                 if (result)
                 {
                     // Redirect to the Index page if successful

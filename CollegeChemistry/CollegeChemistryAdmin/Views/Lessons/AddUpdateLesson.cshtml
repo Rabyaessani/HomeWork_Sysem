@@ -26,6 +26,10 @@
     <h1 class="mb-8"> @(Lessonid == 0 ? "Add Lesson" : "Update Lesson")</h1>
 </div>
 
+<div id="errorAlert" class="alert alert-danger alert-dismissible fade show" style="display: none;">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <strong>Error!</strong> <span id="errorMessage"></span>
+</div>
 
 <div class="page-wrapper">
     <div class="content">
@@ -34,7 +38,7 @@
                 <!-- Card -->
                 <div class="card">
                     <div class="card-body">
-                        <form enctype="multipart/form-data" method="post" asp-area="" asp-controller="Lessons" asp-action="@LessonForm_ActionMethod">
+                        <form id="yourFormId" enctype="multipart/form-data" method="post" asp-area="" asp-controller="Lessons" asp-action="@LessonForm_ActionMethod">
                             <fieldset id="first-field">
                                 <div class="row">
                                     <div class="col-md-12 mb-2" hidden>
@@ -135,6 +139,19 @@
     <!-- Initialize CKEditor -->
     <script>
         CKEDITOR.replace('LessonContent');
+
+        document.getElementById('yourFormId').addEventListener('submit', function (e) {
+            // Get the CKEditor instance
+            var editorData = CKEDITOR.instances.LessonContent.getData();
+
+            // Check if the editor content is empty
+            if (editorData.trim() === '') {
+                // Show the alert message
+                document.getElementById('errorAlert').style.display = 'block';
+                document.getElementById('errorMessage').innerText = 'Lesson Content is required.';
+                e.preventDefault(); // Prevent form submission
+            }
+        });
     </script>
 }
 

@@ -42,8 +42,7 @@ namespace CollegeChemistryLibrary
         public string UpdateLesson(Lessons lessons, string baseUrl, string ApiKey, string ApiHeader)
         {
             var dataAsString = JsonConvert.SerializeObject(lessons);
-            string url = $"{baseUrl}{col_chem_api_controller_name}/updatelessons";
-            return _colchemWebApi.CommitPostActionWithReturn(dataAsString,url, ApiKey, ApiHeader);
+            return _colchemWebApi.CommitPostActionWithReturn(dataAsString, baseUrl + col_chem_api_controller_name + "/updatelessons", ApiKey, ApiHeader);
         }
 
         public string DeleteLesson(Lessons lessons, string baseUrl, string ApiKey, string ApiHeader)

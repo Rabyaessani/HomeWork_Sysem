@@ -98,10 +98,6 @@ namespace CollegeChemistryAPI.Controllers
             try
             {
                 var result = _college_Lessons.AddLesson(lesson);
-                if (result == 0)
-                {
-                    return StatusCode(500, "An error occurred while adding the lesson.");
-                }
                 return Ok(result);
 
             }
@@ -112,19 +108,12 @@ namespace CollegeChemistryAPI.Controllers
         }
 
         [HttpPost("deletelessons")]
-        public ActionResult DeleteBlog([FromBody] Lessons lesson)
+        public ActionResult DeleteLesson([FromBody] Lessons lesson)
         {
             try
             {
                 var result = _college_Lessons.DeleteLesson(lesson);
-                if (result)
-                {
-                    return Ok(new { message = "lesson deleted successfully." });
-                }
-                else
-                {
-                    return NotFound(new { message = "lesson not found or could not be deleted." });
-                }
+                return Ok(result);
             }
             catch (Exception xc)
             {
@@ -133,19 +122,13 @@ namespace CollegeChemistryAPI.Controllers
         }
 
         [HttpPost("updatelessons")]
-        public ActionResult UpdateLessons([FromBody] Lessons lessons)
+        public ActionResult UpdateLesson([FromBody] Lessons lessons)
         {
             try
             {
                 bool result = _college_Lessons.UpdateLesson(lessons);
-                if (result)
-                {
-                    return Ok(new { message = "Lesson updated successfully." });
-                }
-                else
-                {
-                    return NotFound(new { message = "lesson not found or could not be updated." });
-                }
+                return Ok(result);
+                
             }
             catch (Exception xc)
             {

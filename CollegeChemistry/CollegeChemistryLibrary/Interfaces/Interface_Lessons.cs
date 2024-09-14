@@ -12,8 +12,8 @@ namespace CollegeChemistryLibrary.Interfaces
         IEnumerable<Lessons> GetAllLessons();
         Lessons GetLessonById(int Lessonid);
         int AddLesson(Lessons lesson);
-        bool UpdateLesson(Lessons lesson);
-        bool DeleteLesson(Lessons lesson);
+        bool UpdateLesson(Lessons lessons);
+        bool DeleteLesson(Lessons lessons);
 
         bool PublishLesson(int id, bool ispublish, DateTime? published_at);
 
