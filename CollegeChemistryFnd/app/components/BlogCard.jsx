@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 
 export default function BlogCard({ blog, className = "" }) {
+  
   return (
     <Card
       className={cn(
@@ -19,24 +20,21 @@ export default function BlogCard({ blog, className = "" }) {
       shadow="sm"
       radius="sm"
       as={NextLink}
-      href={"/blogs/" + blog.attributes.slug}
+      href={"/blogs/" + blog.id}
     >
       <CardHeader className="p-0 flex-col items-start">
         {/* <small className="text-default-500">{blog.published_at}</small> */}
         <Image
           alt="Card background"
           className="w-[300px] h-[220px] object-cover rounded-small"
-          src={
-            process.env.BACKEND_URL +
-            blog.attributes.cover.data.attributes.formats.small.url
-          }
-          width={blog.attributes.cover.data.attributes.formats.small.width}
-          height={blog.attributes.cover.data.attributes.formats.small.height}
+          src={`data:image/jpeg;base64,${blog.cover_picture}`}
+          width={400}
+          height={400}
           as={NextImage}
         />
       </CardHeader>
       <CardBody className="overflow-visible  flex flex-col gap-4 ">
-        <h4 className="font-bold text-large">{blog.attributes.title}</h4>
+        <h4 className="font-bold text-large">{blog.title}</h4>
       </CardBody>
     </Card>
   );
@@ -97,7 +95,7 @@ export function DisplayBlogs({ blogs, className = "" }) {
       </Button>
       <div className="flex gap-4">
         {blogs?.slice(currIndex, currIndex + blogsToShow).map((blog) => (
-          <BlogCard blog={blog} key={blog.attributes.slug} />
+          <BlogCard blog={blog} key={blog.id} />
         ))}
       </div>
       <Button

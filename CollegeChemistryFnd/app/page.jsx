@@ -2,21 +2,12 @@ import NextImage from "next/image";
 import ScienceBroS from "../public/chemistry-lab-animate.svg";
 import { DisplayBlogs } from "./components/BlogCard";
 
-// async function getFirstSix() {
-//   const res = await fetch(
-//     process.env.BACKEND_URL +
-//       "/api/blogs/allblogs",
-//     {
-//       cache: "no-store",
-//     }
-//   );
-//   return res.json();
-// }
+
 
 async function getFirstSix() {
   try {
     const res = await fetch(
-      process.env.BACKEND_URL + "/api/blogs/allblogs",
+      process.env.BACKEND_URL + "/api/blogs/allPublishedBlogs?ispublish=true",
       {
         cache: "no-store",
       }
@@ -28,12 +19,16 @@ async function getFirstSix() {
     }
     
     const data = await res.json();
-    console.log("data",data)
-    return data;
+
+    // Sort the data by 'created_at' in descending order (latest first)
+    const sortedData = data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+    
+    // Limit the result to the first 6 items
+    return sortedData.slice(0, 6); 
     
   } catch (error) {
     console.log("Error fetching blogs:", error);
-    return error; // or handle it as per your requirement
+    return null; 
   }
 }
 
@@ -63,9 +58,8 @@ function TypographyH3({ children }) {
 
 export default async function Home() {
    const data2 = await getFirstSix();
-   console.log("data2",data2)
-   console.log("Hello world")
-  const first_six = data2.data;
+   const first_six = data2;
+   //console.log(data2)
   return (
     <main>
       <section className="sm:h-[calc(100vh-65px)] md:bg-blob-haikei bg-contain bg-no-repeat flex flex-col-reverse sm:flex-row-reverse justify-evenly items-center mr-6">
@@ -84,6 +78,7 @@ export default async function Home() {
           />
         </div>
       </section>
+      {first_six.length > 0 &&
       <section className="flex flex-col gap-4 items-center py-7 after:content-[''] after:bg-pink-200   after:absolute relative after:inset-0 after:skew-y-3 after:-z-10 ">
         <TypographyH2 content={"Explore some Latest Blog Posts"} />
         <div
@@ -91,8 +86,9 @@ export default async function Home() {
           className="grid place-content-center grid-cols-3 gap-4  w-fit"
         ></div>
         <DisplayBlogs blogs={first_six} />
-        {/* <DisplayBlogs/> */}
+       
       </section>
+      }
     </main>
   );
 }

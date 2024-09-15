@@ -92,7 +92,7 @@ export default async function lessons() {
   //const category = searchParams["category"] ?? "";
   //const limit = searchParams["limit"] || 10;
   const data = await getLessons();
-  console.log("data", data);
+  //console.log("data", data);
   //const lessons = data;
 
   if (data.error) {

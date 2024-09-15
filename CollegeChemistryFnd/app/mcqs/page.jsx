@@ -5,9 +5,13 @@ import sanitizeHtml from 'sanitize-html';
 
 async function getMcqs() {
   try {
-    const res = await fetch(process.env.BACKEND_URL + "/Questions/allPublishedQuestions?ispublish=true", {
-      cache: "no-store",
-    });
+    
+    const res = await fetch(
+      `${process.env.BACKEND_URL}/api/questions/allPublishedQuestions?ispublish=true`,
+      {
+        cache: "no-store",
+      }
+    );
     return res.json();
   } catch (error) {
     return { error: error.message || "Error while fetching MCQs" };
@@ -25,6 +29,7 @@ export const metadata = {
 
 async function page() {
   const data = await getMcqs();
+  //console.log("msq data",data)
   
   if (data.error) {
     return (

@@ -5,9 +5,8 @@ import MyPagination from "./pagination";
 
 async function getBlogs() {
   try {
-    const res = await fetch(
-      process.env.BACKEND_URL +
-        `/blogs/allPublishedBlogs?ispublish=true`,
+   const res = await fetch(
+      `${process.env.BACKEND_URL}/api/blogs/allPublishedBlogs?ispublish=true`,
       {
         cache: "no-store",
       }
@@ -36,26 +35,24 @@ function BlogCard({ blog }) {
       radius="sm"
       shadow="sm"
       as={NextLink}
-      href={"/blogs/" + blog.attributes.slug}
+      href={"/blogs/" + blog.id}
     >
       <CardHeader className="">
         <Image
           as={NextImage}
-          src={
-            process.env.BACKEND_URL + blog.attributes.cover.data.attributes.url
-          }
+          src={`data:image/jpeg;base64,${blog.cover_picture}`}
           className="w-[320px] h-[210px]  object-cover rounded-none "
-          alt={blog.attributes.title}
+          alt={blog.title}
           width={400}
           height={400}
         />
       </CardHeader>
       <CardBody className="">
         <h3 className="font-semibold text-3xl group-hover:text-pink-600">
-          {blog.attributes.title}
+          {blog.title}
         </h3>
         <p className="line-clamp-3 text-small pt-3 ">
-          {blog.attributes.description}
+          {blog.description}
         </p>
       </CardBody>
     </Card>
@@ -63,8 +60,8 @@ function BlogCard({ blog }) {
 }
 
 export default async function blogs({ searchParams }) {
-  const starting_limit = searchParams["limit"] || 10;
-  const data = await getBlogs(starting_limit);
+  //const starting_limit = searchParams["limit"] || 10;
+  const data = await getBlogs();
   if (data.error) {
     return (
       <main className="container p-3 grid place-content-center min-h-screen">
@@ -73,7 +70,7 @@ export default async function blogs({ searchParams }) {
     );
   }
 
-  if (data.data.length === 0) {
+  if (data.length === 0) {
     return (
       <main className="container p-3 grid place-content-center min-h-screen">
         <h1 className="text-4xl font-bold pb-9">No blogs Published Yet</h1>
@@ -85,11 +82,11 @@ export default async function blogs({ searchParams }) {
     <main className="container p-3 grid place-content-center min-h-screen">
       <h1 className="text-4xl font-bold pb-9">Blogs</h1>
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {data.data.map((blog, idx) => (
+        {data.map((blog, idx) => (
           <BlogCard key={blog.id + idx} blog={blog} />
         ))}
       </div>
-      <MyPagination total={data.meta.pagination.total} limit={starting_limit} />
+      {/* <MyPagination total={data.meta.pagination.total} limit={starting_limit} /> */}
     </main>
   );
 }
