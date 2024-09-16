@@ -97,7 +97,7 @@ export default async function lessons() {
 
   if (data.error) {
     return (
-      <main className="container p-3 grid place-content-center min-h-screen">
+      <main className="container-fluid p-3 grid place-content-center min-h-screen">
         <h1 className="text-4xl font-bold pb-9">
           Error while fetching Lessons
         </h1>
@@ -106,7 +106,7 @@ export default async function lessons() {
   }
   if (data.length === 0) {
     return (
-      <main className="container p-3 grid place-content-center min-h-screen">
+      <main className="container-fluid p-3 grid place-content-center min-h-screen">
         <h1 className="text-4xl font-bold pb-9">No Lessons Published Yet</h1>
       </main>
     );
@@ -124,7 +124,7 @@ export default async function lessons() {
   // }
 
   return (
-    <main className="container mx-auto grid p-5 justify-center min-h-[90vh]">
+    <main className="container-fluid grid place-content-center min-h-screen">
       {/* {categories.data.length > 0 && (
         <div className="w-fit md:ml-auto md:mr-0 ml-auto mr-auto">
           <CategorySelect
@@ -134,8 +134,8 @@ export default async function lessons() {
           />
         </div>
       )} */}
-
-      <section className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-4 place-content-center">
+      <h1 className="text-4xl font-bold pb-9">Lesson</h1>
+      <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {data.map((lesson) => (
           <CardComponent lesson={lesson} key={lesson.id} />
         ))}

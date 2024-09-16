@@ -64,7 +64,7 @@ export default async function blogs({ searchParams }) {
   const data = await getBlogs();
   if (data.error) {
     return (
-      <main className="container p-3 grid place-content-center min-h-screen">
+      <main className="container-fluid grid place-content-center min-h-screen">
         <h1 className="text-4xl font-bold pb-9">Error while fetching blogs</h1>
       </main>
     );
@@ -72,16 +72,16 @@ export default async function blogs({ searchParams }) {
 
   if (data.length === 0) {
     return (
-      <main className="container p-3 grid place-content-center min-h-screen">
+      <main className="container-fluid grid place-content-center min-h-screen">
         <h1 className="text-4xl font-bold pb-9">No blogs Published Yet</h1>
       </main>
     );
   }
 
   return (
-    <main className="container p-3 grid place-content-center min-h-screen">
+    <main className="container-fluid grid place-content-center min-h-screen">
       <h1 className="text-4xl font-bold pb-9">Blogs</h1>
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {data.map((blog, idx) => (
           <BlogCard key={blog.id + idx} blog={blog} />
         ))}
