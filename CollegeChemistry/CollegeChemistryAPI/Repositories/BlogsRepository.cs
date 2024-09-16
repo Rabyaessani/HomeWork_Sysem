@@ -122,12 +122,12 @@ namespace CollegeChemistryAPI.Repositories
                 return false;
             }
         }
-        public IEnumerable<Blogs> GetAllPublishBlogs(bool ispublish)
+        public IEnumerable<Blogs> GetAllPublishBlogs()
         {
             try
             {
                 return _college_chemistry_Db_Context.Blogs
-                  .Where(b => b.ispublish == ispublish)
+                  .Where(b => b.ispublish == true)
                   .ToList();
             }
             catch (Exception exc)

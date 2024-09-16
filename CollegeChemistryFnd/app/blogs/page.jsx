@@ -6,7 +6,7 @@ import MyPagination from "./pagination";
 async function getBlogs() {
   try {
    const res = await fetch(
-      `${process.env.BACKEND_URL}/api/blogs/allPublishedBlogs?ispublish=true`,
+      `${process.env.BACKEND_URL}/api/blogs/allPublishedBlogs`,
       {
         cache: "no-store",
       }

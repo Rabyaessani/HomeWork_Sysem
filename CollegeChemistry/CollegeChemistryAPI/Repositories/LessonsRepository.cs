@@ -62,12 +62,12 @@ namespace CollegeChemistryAPI.Repositories
             }
         }
 
-        public IEnumerable<Lessons> GetAllPublishLessons(bool ispublish)
+        public IEnumerable<Lessons> GetAllPublishLessons()
         {
             try
             {
                 return _college_chemistry_Db_Context.Lessons
-                  .Where(l => l.ispublish == ispublish)
+                  .Where(l => l.ispublish == true)
                   .ToList();
             }
             catch (Exception exc)

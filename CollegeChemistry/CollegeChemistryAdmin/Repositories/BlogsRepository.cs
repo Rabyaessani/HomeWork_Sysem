@@ -60,7 +60,7 @@ namespace CollegeChemistryAdmin.Repositories
             return response;
         }
 
-        public IEnumerable<Blogs> GetAllPublishBlogs(bool ispublish)
+        public IEnumerable<Blogs> GetAllPublishBlogs()
         {
             throw new NotImplementedException();
         }

@@ -27,7 +27,7 @@ namespace CollegeChemistryAdmin.Repositories
             return response;
         }
 
-        public IEnumerable<Lessons> GetAllPublishLessons(bool ispublish)
+        public IEnumerable<Lessons> GetAllPublishLessons()
         {
             throw new NotImplementedException();
         }

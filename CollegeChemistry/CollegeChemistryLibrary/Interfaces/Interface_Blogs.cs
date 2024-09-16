@@ -17,7 +17,7 @@ namespace CollegeChemistryLibrary.Interfaces
 
         bool PublishBlog(int id, bool ispublish, DateTime? published_at);
 
-        IEnumerable<Blogs> GetAllPublishBlogs(bool ispublish);
+        IEnumerable<Blogs> GetAllPublishBlogs();
 
     }
 }

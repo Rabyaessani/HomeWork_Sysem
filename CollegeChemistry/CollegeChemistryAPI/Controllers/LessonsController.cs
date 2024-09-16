@@ -39,11 +39,11 @@ namespace CollegeChemistryAPI.Controllers
         }
 
         [HttpGet("allPublishedLessons")]
-        public ActionResult GetPublishLessons(bool ispublish)
+        public ActionResult GetPublishLessons()
         {
             try
             {
-                var result = _college_Lessons.GetAllPublishLessons(ispublish);
+                var result = _college_Lessons.GetAllPublishLessons();
                 return Ok(result);
 
             }

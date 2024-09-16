@@ -54,11 +54,11 @@ namespace CollegeChemistryAPI.Controllers
         }
 
         [HttpGet("allPublishedBlogs")]
-        public ActionResult GetPublishLessons(bool ispublish)
+        public ActionResult GetPublishLessons()
         {
             try
             {
-                var result = _college_blogs.GetAllPublishBlogs(ispublish);
+                var result = _college_blogs.GetAllPublishBlogs();
                 return Ok(result);
 
             }

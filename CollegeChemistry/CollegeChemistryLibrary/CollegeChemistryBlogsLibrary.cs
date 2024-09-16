@@ -19,9 +19,9 @@ namespace CollegeChemistryLibrary
             return _colchemWebApi.GetRecords(baseUrl + col_chem_api_controller_name + "/allblogs/", ApiKey, ApiHeader);
         }
 
-        public string GetAllPublishBlogs(string baseUrl, string ApiKey, string ApiHeader, bool ispublish)
+        public string GetAllPublishBlogs(string baseUrl, string ApiKey, string ApiHeader)
         {
-            string url = $"{baseUrl}{col_chem_api_controller_name}/allPublishedBlogs?ispublish={ispublish}";
+            string url = $"{baseUrl}{col_chem_api_controller_name}/allPublishedBlogs";
             return _colchemWebApi.GetRecords(url, ApiKey, ApiHeader);
         }
 
