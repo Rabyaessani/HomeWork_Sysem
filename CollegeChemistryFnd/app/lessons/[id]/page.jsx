@@ -1,24 +1,16 @@
-async function getLesson(id) {
-try {
-    const res = await fetch(
-      `${process.env.BACKEND_URL}/api/lessons/getlessonbyid?id=${id}`,
-      {
-        cache: "no-store",
-      }
-    );
+import { fetchDataWithAuth } from '../../apiUtil'; // Make sure to import the utility function
+const getLesson = async (id) => {
+  try {
+    const url = `${process.env.BACKEND_URL}/api/lessons/getlessonbyid?id=${id}`;
 
-    // Check if the response is not OK (e.g., 404 or 500)
-    if (!res.ok) {
-      throw new Error("Failed to fetch lasson data");
-    }
+    // Call the utility function to fetch data
+    const data = await fetchDataWithAuth(url);
 
-    return await res.json();
+    return data; // Return the fetched blogs
   } catch (error) {
-    console.error("Error fetching lesson data:", error);
-    return null; // Return null if the fetch request fails
+    return { error: error.message || 'An error occurred' };
   }
-}
-
+};
 export async function generateMetadata({ params }) {
   const data = await getLesson(params.id);
   //const lesson = data.data[0];

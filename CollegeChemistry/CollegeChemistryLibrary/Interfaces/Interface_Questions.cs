@@ -17,6 +17,6 @@ namespace CollegeChemistryLibrary.Interfaces
 
         bool PublishQuestions(int id, bool ispublish, DateTime? published_at);
 
-        IEnumerable<Questions> GetAllPublishQuestion(bool ispublish);
+        IEnumerable<Questions> GetAllPublishQuestion();
     }
 }

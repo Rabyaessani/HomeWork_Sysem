@@ -1,24 +1,16 @@
-async function getBlog(id) {
+import { fetchDataWithAuth } from '../../apiUtil'; // Make sure to import the utility function
+const getBlog = async (id) => {
   try {
-    const res = await fetch(
-      `${process.env.BACKEND_URL}/api/blogs/getblogbyid?id=${id}`,
-      {
-        cache: "no-store",
-      }
-    );
+    const url = `${process.env.BACKEND_URL}/api/blogs/getblogbyid?id=${id}`;
 
-    // Check if the response is not OK (e.g., 404 or 500)
-    if (!res.ok) {
-      throw new Error("Failed to fetch blog data");
-    }
+    // Call the utility function to fetch data
+    const data = await fetchDataWithAuth(url);
 
-    return await res.json();
+    return data; // Return the fetched blogs
   } catch (error) {
-    console.error("Error fetching blog data:", error);
-    return null; // Return null if the fetch request fails
+    return { error: error.message || 'An error occurred' };
   }
-}
-
+};
 export async function generateMetadata({ params }) {
   const data = await getBlog(params.id);
 

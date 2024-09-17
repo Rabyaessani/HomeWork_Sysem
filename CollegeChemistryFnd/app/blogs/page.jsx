@@ -2,21 +2,20 @@ import { Card, CardBody, CardHeader, Image } from "@nextui-org/react";
 import NextLink from "next/link";
 import NextImage from "next/image";
 import MyPagination from "./pagination";
+import { fetchDataWithAuth } from '../apiUtil'; // Make sure to import the utility function
 
-async function getBlogs() {
+const getBlogs = async () => {
   try {
-   const res = await fetch(
-      `${process.env.BACKEND_URL}/api/blogs/allPublishedBlogs`,
-      {
-        cache: "no-store",
-      }
-    );
-    return res.json();
-  } catch (error) {
-    return { error: error.message || "An error occured" };
-  }
-}
+    const url = `${process.env.BACKEND_URL}/api/blogs/allPublishedBlogs`;
 
+    // Call the utility function to fetch data
+    const data = await fetchDataWithAuth(url);
+
+    return data; // Return the fetched blogs
+  } catch (error) {
+    return { error: error.message || 'An error occurred' };
+  }
+};
 export const metadata = {
   title: "Blogs",
   description: "Blogs",

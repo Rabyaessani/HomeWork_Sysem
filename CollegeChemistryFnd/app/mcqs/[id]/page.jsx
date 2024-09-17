@@ -1,36 +1,21 @@
 import React from "react";
 import sanitizeHtml from 'sanitize-html';
 import McqCard from "./mcqcard";
+import { fetchDataWithAuth } from '../../apiUtil'; // Make sure to import the utility function
 
 // Fetch the question by its ID using the new API
-async function getMcqById(id) {
-  console.log("ID passed to function:", id);
+const getMcqById = async (id) => {
   try {
-    const res = await fetch(
-      `${process.env.BACKEND_URL}/api/questions/getQuestionbyid?id=${id}`,
-      {
-        cache: "no-store",
-      }
-    );
+    const url = `${process.env.BACKEND_URL}/api/questions/getQuestionbyid?id=${id}`;
 
-    if (!res.ok) {
-      throw new Error(`HTTP error! Status: ${res.status}`);
-    }
+    // Call the utility function to fetch data
+    const data = await fetchDataWithAuth(url);
 
-    const data = await res.json();
-
-    // Log the data to the console
-    console.log("Fetched MCQ Data:", data);
-
-    return data;
+    return data; // Return the fetched blogs
   } catch (error) {
-    // Log the error to the console
-    console.error("Error while fetching the MCQ:", error.message || error);
-    
-    return { error: error.message || "Error while fetching the MCQ" };
+    return { error: error.message || 'An error occurred' };
   }
-}
-
+};
 
 // Set metadata based on the question details
 export async function generateMetadata({ params }) {

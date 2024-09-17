@@ -1,20 +1,17 @@
-async function getAbout() {
+import { fetchDataWithAuth } from '../apiUtil'; // Make sure to import the utility function
+
+const getAbout = async () => {
   try {
-    const res = await fetch(process.env.BACKEND_URL + "/api/about", {
-      cache: "no-store",
-    });
+    const url = `${process.env.BACKEND_URL}/api/about`;
 
-    if (!res.ok) {
-      throw new Error("Failed to fetch data");
-    }
+    // Call the utility function to fetch data
+    const data = await fetchDataWithAuth(url);
 
-    return await res.json();
+    return data; // Return the fetched blogs
   } catch (error) {
-    console.error("Error fetching about content:", error);
-    return null;
+    return { error: error.message || 'An error occurred' };
   }
-}
-
+};
 export const metadata = {
   title: "About",
   description: "About the site",

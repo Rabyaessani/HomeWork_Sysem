@@ -40,7 +40,7 @@ namespace CollegeChemistryAdmin.Repositories
             return response;
         }
 
-        public IEnumerable<Questions> GetAllPublishQuestion(bool ispublish)
+        public IEnumerable<Questions> GetAllPublishQuestion()
         {
             throw new NotImplementedException();
         }

@@ -2,22 +2,20 @@ import React from "react";
 import { Link } from "@nextui-org/react";
 import NextLink from "next/link";
 import sanitizeHtml from 'sanitize-html';
+import { fetchDataWithAuth } from '../apiUtil'; // Make sure to import the utility function
 
-async function getMcqs() {
+const getMcqs = async () => {
   try {
-    
-    const res = await fetch(
-      `${process.env.BACKEND_URL}/api/questions/allPublishedQuestions?ispublish=true`,
-      {
-        cache: "no-store",
-      }
-    );
-    return res.json();
-  } catch (error) {
-    return { error: error.message || "Error while fetching MCQs" };
-  }
-}
+    const url = `${process.env.BACKEND_URL}/api/questions/allPublishedQuestions`;
 
+    // Call the utility function to fetch data
+    const data = await fetchDataWithAuth(url);
+
+    return data; // Return the fetched blogs
+  } catch (error) {
+    return { error: error.message || 'An error occurred' };
+  }
+};
 export const metadata = {
   title: "MCQs",
   description: "MCQs for practice",

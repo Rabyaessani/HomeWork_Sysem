@@ -11,25 +11,23 @@ import NextImage from "next/image";
 import CategorySelect from "./categoryselect";
 import NextLink from "next/link";
 import MyPagination from "./pagination";
+import { fetchDataWithAuth } from '../apiUtil'; // Make sure to import the utility function
 
 export const metadata = {
   title: "Lessons",
 };
-
-async function getLessons() {
+const getLessons = async () => {
   try {
-    const res = await fetch(
-      `${process.env.BACKEND_URL}/api/lessons/allPublishedLessons?ispublish=true`,
-      {
-        cache: "no-store",
-      }
-    );
+    const url = `${process.env.BACKEND_URL}/api/lessons/allPublishedLessons`;
 
-    return res.json();
+    // Call the utility function to fetch data
+    const data = await fetchDataWithAuth(url);
+
+    return data; // Return the fetched blogs
   } catch (error) {
-    return { error: error.message || "An error occured" };
+    return { error: error.message || 'An error occurred' };
   }
-}
+};
 
 // async function getCategories() {
 //   try {
@@ -99,7 +97,7 @@ export default async function lessons() {
     return (
       <main className="container-fluid p-3 grid place-content-center min-h-screen">
         <h1 className="text-4xl font-bold pb-9">
-          Error while fetching Lessons
+          Error while fetching Lessons 
         </h1>
       </main>
     );

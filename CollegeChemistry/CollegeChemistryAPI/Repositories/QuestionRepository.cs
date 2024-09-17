@@ -63,12 +63,12 @@ namespace CollegeChemistryAPI.Repositories
             }
         }
 
-        public IEnumerable<Questions> GetAllPublishQuestion(bool ispublish)
+        public IEnumerable<Questions> GetAllPublishQuestion()
         {
             try
             {
                 return _college_chemistry_Db_Context.Questions
-                  .Where(q => q.ispublish == ispublish)
+                  .Where(q => q.ispublish == true)
                   .ToList();
             }
             catch (Exception exc)

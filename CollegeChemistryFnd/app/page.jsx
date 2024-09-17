@@ -1,36 +1,24 @@
 import NextImage from "next/image";
 import ScienceBroS from "../public/chemistry-lab-animate.svg";
 import { DisplayBlogs } from "./components/BlogCard";
+import { fetchDataWithAuth } from './apiUtil'; // Make sure to import the utility function
 
 
-
-async function getFirstSix() {
+const getFirstSix = async () => {
   try {
-    const res = await fetch(
-      process.env.BACKEND_URL + "/api/blogs/allPublishedBlogs?ispublish=true",
-      {
-        cache: "no-store",
-      }
-    );
-    
-    // Check if the response is ok (status code in the range 200-299)
-    if (!res.ok) {
-      throw new Error(`Failed to fetch: ${res.status} ${res.statusText}`);
-    }
-    
-    const data = await res.json();
+    const url = `${process.env.BACKEND_URL}/api/blogs/allPublishedBlogs`;
 
+    // Call the utility function to fetch data
+    const data = await fetchDataWithAuth(url);
     // Sort the data by 'created_at' in descending order (latest first)
     const sortedData = data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-    
     // Limit the result to the first 6 items
     return sortedData.slice(0, 6); 
-    
   } catch (error) {
-    console.log("Error fetching blogs:", error);
-    return null; 
+    return { error: error.message || 'An error occurred' };
   }
-}
+};
+
 
 
 function TypographyH1({ content }) {
