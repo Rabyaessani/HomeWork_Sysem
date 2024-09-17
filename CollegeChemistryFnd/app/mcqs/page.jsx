@@ -7,10 +7,11 @@ import { fetchDataWithAuth } from '../apiUtil'; // Make sure to import the utili
 const getMcqs = async () => {
   try {
     const url = `${process.env.BACKEND_URL}/api/questions/allPublishedQuestions`;
+    console.log(url)
 
     // Call the utility function to fetch data
     const data = await fetchDataWithAuth(url);
-
+    console.log(data)
     return data; // Return the fetched blogs
   } catch (error) {
     return { error: error.message || 'An error occurred' };
