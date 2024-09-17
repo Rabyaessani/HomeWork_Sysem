@@ -54,7 +54,7 @@ namespace CollegeChemistryAPI.Controllers
         }
 
         [HttpGet("allPublishedBlogs")]
-        public ActionResult GetPublishLessons()
+        public ActionResult GetAllPublishBlogs()
         {
             try
             {
@@ -113,7 +113,7 @@ namespace CollegeChemistryAPI.Controllers
         }
 
         [HttpPost("Publishblog")]
-        public ActionResult PublishLesson([FromBody] Blogs blog)
+        public ActionResult PublishBlog([FromBody] Blogs blog)
         {
             int id = blog.id;
             bool ispublish = blog.ispublish;

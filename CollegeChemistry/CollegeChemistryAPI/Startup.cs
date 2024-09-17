@@ -34,6 +34,8 @@ namespace CollegeChemistryAPI
             services.AddScoped<Interface_Blogs, BlogsRepository>();
             services.AddScoped<Interface_Lessons,LessonsRepository>();
             services.AddScoped<Interface_Questions,QuestionRepository>();
+            services.AddScoped<MCQs_Interface, MCQsRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

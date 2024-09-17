@@ -7,7 +7,7 @@ import { DisplayBlogs } from "./components/BlogCard";
 async function getFirstSix() {
   try {
     const res = await fetch(
-      process.env.BACKEND_URL + "/api/blogs/allPublishedBlogs?ispublish=true",
+      process.env.BACKEND_URL + "/api/blogs/allPublishedBlogs",
       {
         cache: "no-store",
       }
