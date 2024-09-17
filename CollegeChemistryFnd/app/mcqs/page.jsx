@@ -7,7 +7,7 @@ async function getMcqs() {
   try {
     
     const res = await fetch(
-      `${process.env.BACKEND_URL}/api/questions/allPublishedQuestions?ispublish=true`,
+      `${process.env.BACKEND_URL}/api/questions/allPublishedQuestions`,
       {
         cache: "no-store",
       }

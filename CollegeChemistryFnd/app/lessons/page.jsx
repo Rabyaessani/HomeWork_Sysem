@@ -19,7 +19,7 @@ export const metadata = {
 async function getLessons() {
   try {
     const res = await fetch(
-      `${process.env.BACKEND_URL}/api/lessons/allPublishedLessons?ispublish=true`,
+      `${process.env.BACKEND_URL}/api/lessons/allPublishedLessons`,
       {
         cache: "no-store",
       }
