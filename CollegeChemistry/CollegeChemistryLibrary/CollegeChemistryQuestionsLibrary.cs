@@ -20,7 +20,7 @@ namespace CollegeChemistryLibrary
 
         public string GetAllPublishQuestion(string baseUrl, string ApiKey, string ApiHeader, bool ispublish)
         {
-            string url = $"{baseUrl}{col_chem_api_controller_name}/allPublishedQuestions?ispublish={ispublish}";
+            string url = $"{baseUrl}{col_chem_api_controller_name}/allPublishedQuestions";
             return _colchemWebApi.GetRecords(url, ApiKey, ApiHeader);
         }
 
