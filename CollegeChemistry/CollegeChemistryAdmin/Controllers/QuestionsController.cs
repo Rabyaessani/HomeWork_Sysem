@@ -7,10 +7,13 @@ namespace CollegeChemistryAdmin.Controllers
     public class QuestionsController : Controller
     {
         private readonly Interface_Questions _college_chem_interface_questions;
+        private readonly MCQs_Interface _college_chem_interface_mcqs;
+
         private readonly ILogger<QuestionsController> _logger;
-        public QuestionsController(Interface_Questions college_chem_interface_questions, ILogger<QuestionsController> logger)
+        public QuestionsController(Interface_Questions college_chem_interface_questions, MCQs_Interface college_chem_interface_mcqs, ILogger<QuestionsController> logger)
         {
             _college_chem_interface_questions = college_chem_interface_questions;
+            _college_chem_interface_mcqs = college_chem_interface_mcqs;
             _logger = logger;
         }
         public IActionResult Index()
@@ -32,6 +35,7 @@ namespace CollegeChemistryAdmin.Controllers
             {
                 ViewBag.Questionid = id;
                 var result = _college_chem_interface_questions.GetQuestionById(id);
+                ViewBag.List = _college_chem_interface_mcqs.GetAllMCQs().Where(m => (m.ispublish == true)).ToList();
                 return View(result);
             }
             catch (Exception xc)

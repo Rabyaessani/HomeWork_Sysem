@@ -53,7 +53,15 @@
                                         </div>
                                     </div>
 
-                                    
+                                    <div class="col-md-12 mb-4">
+                                        <div class="form-group">
+                                            <label for="mcq_id">Question Type</label>
+                                            <select required class="form-control" name="mcq_id" asp-items="@(new SelectList(ViewBag.List, "id", "title",QuestionModel.mcq_id))">
+                                                <option value="" disabled selected>Select</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
 
                                     <div class="col-md-12 mb-2">
                                         <div class="form-group">
@@ -62,6 +70,8 @@
                                         </div>
                                     </div>
 
+
+                                    
                                     
 
                                     <div class="col-md-6 mb-2">

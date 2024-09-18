@@ -15,6 +15,8 @@ namespace CollegeChemistryLibrary.Entities
         public string option_c { get; set; }
         public string option_d { get; set; }
         public char correct_option { get; set; }
+
+        public int mcq_id { get; set; }
     }
 
 }
