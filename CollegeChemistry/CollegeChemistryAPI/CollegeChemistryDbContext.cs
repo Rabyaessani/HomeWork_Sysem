@@ -16,5 +16,6 @@ namespace CollegeChemistryAPI
         public DbSet<MCQs> MCQs { get; set; }
         public DbSet<MCQ_Questions> MCQ_Questions { get; set; }
         public DbSet<Lessons> Lessons { get; set; }
+        public DbSet<Category> Category { get; set; }
     }
 }

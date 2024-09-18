@@ -14,6 +14,7 @@ namespace CollegeChemistryLibrary.Entities
         public byte[] cover_picture { get; set; }
         public string content { get; set; }
         public string youtube_video { get; set; }
+        public int category_id { get; set; }
     }
 
 }

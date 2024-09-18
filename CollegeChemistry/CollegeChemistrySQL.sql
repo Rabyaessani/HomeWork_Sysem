@@ -61,6 +61,16 @@
 		FOREIGN KEY (mcq_id) REFERENCES MCQs(id),
 		FOREIGN KEY (question_id) REFERENCES Questions(id)
 	);
+	CREATE TABLE Category (
+    id INT PRIMARY KEY IDENTITY(1, 1),
+    category_name NVARCHAR(100) NOT NULL,
+	created_at DATE ,
+		updated_at DATE ,
+		published_at DATE NULL,
+		created_by_id INT,
+		updated_by_id INT,
+		ispublish BIT,
+);
 
 	CREATE TABLE Lessons (
 		id INT PRIMARY KEY IDENTITY(1,1),
@@ -74,7 +84,14 @@
 		published_at DATE NULL,
 		created_by_id INT,
 		updated_by_id INT,
+		category_id INT NOT NULL,
 		ispublish BIT, -- 'BIT' is the type used for boolean values in MSSQL
 		FOREIGN KEY (created_by_id) REFERENCES Users(id),
 		FOREIGN KEY (updated_by_id) REFERENCES Users(id),
+		FOREIGN KEY (category_id) REFERENCES Category(id)
 	);
+
+
+select * from Lessons
+select * from Category
+
