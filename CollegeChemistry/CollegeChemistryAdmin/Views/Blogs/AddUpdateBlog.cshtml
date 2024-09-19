@@ -122,8 +122,15 @@
 
 @section Scripts {
     <!-- CKEditor CDN -->
-    
 
+    <script>
+        CKEDITOR.replace('BlogDesc', {
+            height: 400,  // Set the editor height
+            extraPlugins: 'font,colorbutton'  // Include plugins for font family and colors
+            
+             
+        });
+    </script>
     <!-- Initialize CKEditor -->
     <script>
         CKEDITOR.replace('BlogDesc');
