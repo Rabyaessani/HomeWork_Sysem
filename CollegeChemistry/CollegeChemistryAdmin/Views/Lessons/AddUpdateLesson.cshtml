@@ -146,6 +146,28 @@
     <!-- CKEditor CDN -->
     <!-- Initialize CKEditor -->
     <script>
+        CKEDITOR.replace('LessonContent', {
+            height: 400,  // Set the editor height
+            extraPlugins: 'font,colorbutton',  // Add subscript, superscript, font, and color plugins
+
+            // Customize toolbar to include desired features
+            toolbar: [
+                { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript'] },
+                { name: 'paragraph', items: ['NumberedList', 'BulletedList', 'Blockquote'] },
+                { name: 'styles', items: ['Font', 'FontSize'] },
+                { name: 'colors', items: ['TextColor', 'BGColor'] },
+                { name: 'insert', items: ['Image', 'Table', 'HorizontalRule'] },
+                { name: 'clipboard', items: ['Undo', 'Redo'] },
+                { name: 'editing', items: ['Scayt'] }
+            ],
+            font_names: 'Arial;Times New Roman;Verdana;Comic Sans MS;Courier New',
+            fontSize_sizes: '16/16px;24/24px;32/32px;48/48px;',
+            removeButtons: ''
+        });
+
+    </script>
+
+    <script>
         CKEDITOR.replace('LessonContent');
 
         document.getElementById('yourFormId').addEventListener('submit', function (e) {
