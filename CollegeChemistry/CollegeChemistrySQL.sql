@@ -25,6 +25,7 @@
 
 	CREATE TABLE Questions (
 		id INT PRIMARY KEY IDENTITY(1,1),
+		mcq_id INT NOT NULL,
 		question TEXT NOT NULL,
 		option_a VARCHAR(255) NOT NULL,
 		option_b VARCHAR(255) NOT NULL,
@@ -39,6 +40,7 @@
 		ispublish BIT, -- 'BIT' is the type used for boolean values in MSSQL
 		FOREIGN KEY (created_by_id) REFERENCES Users(id),
 		FOREIGN KEY (updated_by_id) REFERENCES Users(id),
+		FOREIGN KEY (mcq_id) REFERENCES MCQs(id),
 	);
 
 	CREATE TABLE MCQs (
@@ -54,13 +56,7 @@
 		FOREIGN KEY (updated_by_id) REFERENCES Users(id)
 	);
 
-	CREATE TABLE MCQ_Questions (
-		id INT PRIMARY KEY IDENTITY(1,1),
-		mcq_id INT NOT NULL,
-		question_id INT NOT NULL,
-		FOREIGN KEY (mcq_id) REFERENCES MCQs(id),
-		FOREIGN KEY (question_id) REFERENCES Questions(id)
-	);
+
 	CREATE TABLE Category (
     id INT PRIMARY KEY IDENTITY(1, 1),
     category_name NVARCHAR(100) NOT NULL,
