@@ -10,6 +10,9 @@ namespace CollegeChemistryLibrary
 {
     public class WebApiLibrary
     {
+        public static string username = "11195716";
+        public static string password = "60-dayfreetrial";
+        public static string authHeaderValue = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{username}:{password}"));
 
         public string GetRecords(string url, string ApiKey, string ApiHeader)
         {
@@ -20,6 +23,7 @@ namespace CollegeChemistryLibrary
                 MediaTypeWithQualityHeaderValue contentType = new MediaTypeWithQualityHeaderValue("application/json");
                 client.DefaultRequestHeaders.Accept.Add(contentType);
                 client.DefaultRequestHeaders.Add(ApiHeader, ApiKey);
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", authHeaderValue);
                 HttpResponseMessage response = client.GetAsync(url).Result;
                 stringData = response.Content.ReadAsStringAsync().Result;
             }
@@ -36,6 +40,7 @@ namespace CollegeChemistryLibrary
                     var content = new StringContent(dataAsString);
                     content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
                     client.DefaultRequestHeaders.Add(ApiHeader, ApiKey);
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", authHeaderValue);
                     //HTTP POST
                     var postTask = client.PostAsync(post_url, content);
                     postTask.Wait();
@@ -60,6 +65,7 @@ namespace CollegeChemistryLibrary
                     var content = new StringContent(dataAsString);
                     content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
                     client.DefaultRequestHeaders.Add(ApiHeader, ApiKey);
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", authHeaderValue);
                     //HTTP POST
                     var postTask = client.PostAsync(post_url, content);
                     postTask.Wait();
@@ -89,6 +95,7 @@ namespace CollegeChemistryLibrary
                     var content = new StringContent(dataAsString);
                     content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
                     client.DefaultRequestHeaders.Add(ApiHeader, ApiKey);
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", authHeaderValue);
                     //HTTP POST
                     var postTask = client.PostAsync(post_url, content);
                     postTask.Wait();

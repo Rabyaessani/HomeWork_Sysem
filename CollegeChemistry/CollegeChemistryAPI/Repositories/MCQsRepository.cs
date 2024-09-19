@@ -7,7 +7,7 @@ using System;
 
 namespace CollegeChemistryAPI.Repositories
 {
-    public class MCQsRepository:MCQs_Interface
+    public class MCQsRepository:Interface_MCQs
     {
         private readonly CollegeChemistryDbContext _college_chemistry_Db_Context;
         private readonly ILogger<MCQsRepository> _logger;

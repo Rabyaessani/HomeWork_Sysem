@@ -7,10 +7,10 @@ namespace CollegeChemistryAdmin.Controllers
     public class QuestionsController : Controller
     {
         private readonly Interface_Questions _college_chem_interface_questions;
-        private readonly MCQs_Interface _college_chem_interface_mcqs;
+        private readonly Interface_MCQs _college_chem_interface_mcqs;
 
         private readonly ILogger<QuestionsController> _logger;
-        public QuestionsController(Interface_Questions college_chem_interface_questions, MCQs_Interface college_chem_interface_mcqs, ILogger<QuestionsController> logger)
+        public QuestionsController(Interface_Questions college_chem_interface_questions, Interface_MCQs college_chem_interface_mcqs, ILogger<QuestionsController> logger)
         {
             _college_chem_interface_questions = college_chem_interface_questions;
             _college_chem_interface_mcqs = college_chem_interface_mcqs;

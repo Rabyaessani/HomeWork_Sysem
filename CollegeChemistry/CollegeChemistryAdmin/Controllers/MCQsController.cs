@@ -6,9 +6,9 @@ namespace CollegeChemistryAdmin.Controllers
 {
     public class MCQsController : Controller
     {
-        private readonly MCQs_Interface _college_chem_interface_mcqs;
+        private readonly Interface_MCQs _college_chem_interface_mcqs;
         private readonly ILogger<MCQsController> _logger;
-        public MCQsController(MCQs_Interface college_chem_interface_mcqs, ILogger<MCQsController> logger)
+        public MCQsController(Interface_MCQs college_chem_interface_mcqs, ILogger<MCQsController> logger)
         {
             _college_chem_interface_mcqs = college_chem_interface_mcqs;
             _logger = logger;

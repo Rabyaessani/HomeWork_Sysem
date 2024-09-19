@@ -34,7 +34,7 @@ namespace CollegeChemistryAPI
             services.AddScoped<Interface_Blogs, BlogsRepository>();
             services.AddScoped<Interface_Lessons,LessonsRepository>();
             services.AddScoped<Interface_Questions,QuestionRepository>();
-            services.AddScoped<MCQs_Interface, MCQsRepository>();
+            services.AddScoped<Interface_MCQs, MCQsRepository>();
             services.AddScoped<Interface_Category, CategoryRepository>();
         }
 

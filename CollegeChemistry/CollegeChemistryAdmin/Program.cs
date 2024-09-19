@@ -8,7 +8,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<Interface_Blogs, BlogsRepository>();
 builder.Services.AddScoped<Interface_Lessons, LessonsRepository>();
 builder.Services.AddScoped<Interface_Questions, QuestionsRepository>();
-builder.Services.AddScoped<MCQs_Interface, MCQRepository>();
+builder.Services.AddScoped<Interface_MCQs, MCQRepository>();
 builder.Services.AddScoped<Interface_Category, CategoryRepository>();
 
 

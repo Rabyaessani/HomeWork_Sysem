@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace CollegeChemistryAdmin.Repositories
 {
-    public class MCQRepository:MCQs_Interface
+    public class MCQRepository:Interface_MCQs
     {
         private CollegeChemistryLibrary.CollegeChemistryMCQsLibrary _hllWebApi = new CollegeChemistryLibrary.CollegeChemistryMCQsLibrary();
         private IConfiguration _appConfig { get; }

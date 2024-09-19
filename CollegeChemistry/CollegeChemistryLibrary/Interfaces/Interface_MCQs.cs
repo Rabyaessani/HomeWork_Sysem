@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CollegeChemistryLibrary.Interfaces
 {
-    public interface MCQs_Interface
+    public interface Interface_MCQs
     {
         IEnumerable<MCQs> GetAllMCQs();
         MCQs GetMCQsById(int MCQid);

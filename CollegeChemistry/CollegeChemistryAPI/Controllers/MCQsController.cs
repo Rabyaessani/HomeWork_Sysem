@@ -12,9 +12,9 @@ namespace CollegeChemistryAPI.Controllers
     public class MCQsController : ControllerBase
     {
         private readonly ILogger<MCQsController> _logger;
-        private MCQs_Interface _college_Mcqs;
+        private Interface_MCQs _college_Mcqs;
 
-        public MCQsController(MCQs_Interface college_mcqs, ILogger<MCQsController> logger)
+        public MCQsController(Interface_MCQs college_mcqs, ILogger<MCQsController> logger)
         {
             _logger = logger;
             _college_Mcqs = college_mcqs;
