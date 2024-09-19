@@ -54,7 +54,15 @@
                                             <input type="text" class="form-control" id="created_at" name="created_at" value="@LessonModel.created_at"  readonly>
                                         </div>
                                     </div>
+                                    <div class="col-md-12 mb-4">
+                                        <div class="form-group">
+                                            <label for="category_id">Category Type</label>
+                                            <select required class="form-control" name="category_id" asp-items="@(new SelectList(ViewBag.List, "id", "category_name",LessonModel.category_id))">
+                                                <option value="" disabled selected>Select</option>
 
+                                            </select>
+                                        </div>
+                                    </div>
                                     <div class="col-md-12 mb-2">
                                         <div class="form-group">
                                             <label for="title">Lesson Title</label>

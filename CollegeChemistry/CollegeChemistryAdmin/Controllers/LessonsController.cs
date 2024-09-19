@@ -7,11 +7,13 @@ namespace CollegeChemistryAdmin.Controllers
     public class LessonsController : Controller
     {
         private readonly Interface_Lessons _college_chem_interface_lessons;
+        private readonly Interface_Category _college_chem_interface_category;
         private readonly ILogger<LessonsController> _logger;
-        public LessonsController(Interface_Lessons college_chem_interface_lessons, ILogger<LessonsController> logger)
+        public LessonsController(Interface_Lessons college_chem_interface_lessons, ILogger<LessonsController> logger, Interface_Category college_chem_interface_category)
         {
             _college_chem_interface_lessons = college_chem_interface_lessons;
             _logger = logger;
+            _college_chem_interface_category = college_chem_interface_category;
         }
         public IActionResult Index()
         {
@@ -32,6 +34,7 @@ namespace CollegeChemistryAdmin.Controllers
             {
                 ViewBag.LessonId = id;
                 var result = _college_chem_interface_lessons.GetLessonById(id);
+                ViewBag.List = _college_chem_interface_category.GetAllCategory().Where(m => (m.ispublish == true)).ToList();
                 return View(result);
             }
             catch (Exception xc)
