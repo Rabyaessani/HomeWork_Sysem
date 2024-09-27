@@ -38,7 +38,6 @@ namespace CollegeChemistryAPI
             services.AddScoped<Interface_Category, CategoryRepository>();
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
-
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowAllOrigins",
@@ -65,7 +64,7 @@ namespace CollegeChemistryAPI
             }
 
             app.UseHttpsRedirection();
-
+            app.UseCors("AllowAllOrigins");
             app.UseRouting();
 
             app.UseAuthorization();
@@ -74,7 +73,6 @@ namespace CollegeChemistryAPI
             {
                 endpoints.MapControllers();
             });
-            app.UseCors("AllowAllOrigins");
         }
     }
 }
