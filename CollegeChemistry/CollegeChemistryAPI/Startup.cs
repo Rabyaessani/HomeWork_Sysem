@@ -46,6 +46,7 @@ namespace CollegeChemistryAPI
                         builder.AllowAnyOrigin()  // Or specify your frontend URL
                                .AllowAnyMethod()
                                .AllowAnyHeader();
+                               //.AllowCredentials(); // Allows HttpOnly cookies and other credentials;
                     });
             });
         }

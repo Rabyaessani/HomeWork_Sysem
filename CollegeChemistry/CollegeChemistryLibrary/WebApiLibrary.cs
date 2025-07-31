@@ -10,7 +10,7 @@ namespace CollegeChemistryLibrary
 {
     public class WebApiLibrary
     {
-        public static string username = "11195716";
+        public static string username = "11257213";
         public static string password = "60-dayfreetrial";
         public static string authHeaderValue = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{username}:{password}"));
 
