@@ -29,7 +29,7 @@ namespace CollegeChemistryAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContextPool<CollegeChemistryDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CollegeChemistryDbConn")));
+            services.AddDbContextPool<CollegeChemistryDbContext>(options => options.UseSqlite("Data Source=collegechemistry.db"));
             services.AddHttpContextAccessor();
             services.AddScoped<Interface_Blogs, BlogsRepository>();
             services.AddScoped<Interface_Lessons,LessonsRepository>();
